@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makanan Anjing - Pet Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f5f6f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .custom-navbar {
+            background-color: #e4710cff;
+        }
+
+        .category-header {
+            background: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #6c757d;
+        }
+
+        .breadcrumb a:hover {
+            color: #e4710cff;
+        }
+
+        .card-product {
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            background: white;
+            overflow: hidden;
+        }
+
+        .card-product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: contain;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .card-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 48px;
+        }
+
+        .card-price {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .old-price {
+            color: #6c757d;
+            font-size: 0.85rem;
+            text-decoration: line-through;
+            font-weight: normal;
+            margin-left: 6px;
+        }
+
+        .btn-detail {
+            background-color: #e4710cff;
+            color: white;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .btn-detail:hover {
+            background-color: #d35400;
+            color: white;
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/">PET SHOP</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/makanan-kucing">MAKANAN KUCING</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fw-bold" href="/makanan-anjing">MAKANAN ANJING</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About Us</a>
+                </li>
+            </ul>
+
+            <div class="d-flex align-items-center text-white">
+                <a href="#" class="text-white me-3 fs-5"><i class="bi bi-search"></i></a>
+                <a href="#" class="text-white me-3 fs-5"><i class="bi bi-heart"></i></a>
+                <a href="#" class="text-white fs-5"><i class="bi bi-bag"></i></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- HEADER -->
+<div class="category-header">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Makanan Anjing</li>
+            </ol>
+        </nav>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="fw-bold m-0">Katalog Makanan Anjing</h2>
+
+            <select class="form-select form-select-sm" style="width:150px; border-color:#e4710cff;">
+                <option selected>Terpopuler</option>
+                <option>Harga Terendah</option>
+                <option>Harga Tertinggi</option>
+                <option>Terbaru</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUK -->
+<div class="container mb-5">
+    <div class="row">
+
+        <!-- DISKON 1 -->
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="card card-product shadow-sm position-relative">
+                <span class="badge-discount">30% OFF</span>
+                <img src="/images/Pedigree.png" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Pedigree Adult Beef 1.5KG</h5>
+                    <p class="card-price">
+                        Rp 68.000 <span class="old-price">Rp 97.000</span>
+                    </p>
+                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISKON 2 -->
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="card card-product shadow-sm position-relative">
+                <span class="badge-discount">15% OFF</span>
+                <img src="/images/RoyalMaxi.png" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Royal Canin Maxi Adult 4KG</h5>
+                    <p class="card-price">
+                        Rp 420.000 <span class="old-price">Rp 495.000</span>
+                    </p>
+                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- NORMAL -->
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="card card-product shadow-sm">
+                <img src="/images/BoltDog.png" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Bolt Dog Food Lamb 1KG</h5>
+                    <p class="card-price">Rp 22.000</p>
+                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- NORMAL -->
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="card card-product shadow-sm">
+                <img src="/images/Purina.png" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Purina Pro Plan Puppy 2.5KG</h5>
+                    <p class="card-price">Rp 185.000</p>
+                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="d-flex justify-content-center">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="/makanan-anjing">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="/makanan-anjing">1</a></li>
+<li class="page-item active"><a class="page-link">2</a></li>
+<li class="page-item"><a class="page-link" href="/makanan-anjing3">3</a></li>
+            <li class="page-item"><a class="page-link" href="/makanan-anjing2">Next</a></li>
+        </ul>
+    </div>
+</div>
+
+<footer class="text-center py-4 bg-light mt-5">
+    <p class="text-muted small m-0">
+        &copy; 2026 Pet Shop Indonesia. All Rights Reserved.
+    </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
