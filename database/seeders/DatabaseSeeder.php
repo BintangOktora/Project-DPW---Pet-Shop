@@ -55,6 +55,12 @@ class DatabaseSeeder extends Seeder
     'email' => 'yarsitv@gmail.com',
     'password' => '$2y$12$r6NdzicUQWoOiV56qBVSIOruRUsBMIlBGwIqAAVxb3rH84If8zNP.',
   ],
+[
+    'nama_user' => 'Erere',
+    'no_hp' => '081892121',
+    'email' => 'erere@gmail.com',
+    'password' => '$2y$12$nlbZF.s1AlnAqDWv6/0HD.j8Df2/ZSuoHHiVz8MRrvUM3oKYAMO8e',
+  ],
 ];
 
         foreach ($users as $user) {
@@ -64,4 +70,4 @@ class DatabaseSeeder extends Seeder
             );
         }
     }
-}   
+}
