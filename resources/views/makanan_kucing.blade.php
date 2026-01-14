@@ -138,12 +138,19 @@
 
                 <div class="d-flex align-items-center text-white">
                     @if(session('user_login'))
-                       <span class="me-3 d-none d-lg-block">Hi, {{ session('user_nama') }}</span>
+                        <span class="me-3 small text-white">
+                            Halo, {{ session('user_nama') }}
+                        </span>
+                        <a href="/profile" class="btn btn-sm btn-outline-light me-2">Profile</a>
+                        <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
+                    @else
+                        <a href="/login" class="btn btn-sm btn-light me-2">Login</a>
+                        <a href="/register" class="btn btn-sm btn-outline-light">Register</a>
                     @endif
-                    <a href="#" class="text-white me-3 fs-5"><i class="bi bi-search"></i></a>
-                    <a href="#" class="text-white me-3 fs-5"><i class="bi bi-heart"></i></a>
-                    <a href="#" class="text-white fs-5"><i class="bi bi-bag"></i></a>
+                    <a href="#" class="text-white ms-3 fs-5"><i class="bi bi-search"></i></a>
+                    <a href="/keranjang" class="text-white ms-3 fs-5"><i class="bi bi-bag"></i></a>
                 </div>
+
             </div>
         </div>
     </nav>

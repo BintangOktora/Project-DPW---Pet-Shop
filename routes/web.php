@@ -48,6 +48,11 @@ Route::get('/login', [UserLoginController::class, 'loginForm']);
 Route::post('/login', [UserLoginController::class, 'loginProcess']);
 Route::get('/logout', [UserLoginController::class, 'logout']);
 
+// buat PROFILE & GANTI PASSWORD
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index']);
+Route::post('/profile/update', [App\Http\Controllers\ProfileController::class, 'update']);
+Route::post('/profile/password', [App\Http\Controllers\ProfileController::class, 'changePassword']);
+
 //buat ke page About Us 
 Route::get('/about', function () {
     return view('about');

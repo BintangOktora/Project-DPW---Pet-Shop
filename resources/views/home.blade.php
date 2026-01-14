@@ -88,8 +88,10 @@
                     <span class="navbar-text text-white me-3">
                         Halo, {{ session('user_nama') }}
                     </span>
+                    <a href="/profile" class="btn btn-sm btn-outline-light me-2">Profile</a>
                     <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
                 @else
+
                     <a href="/login" class="btn btn-sm btn-light me-2">Login</a>
                     <a href="/register" class="btn btn-sm btn-outline-light">Register</a>
                 @endif
