@@ -175,7 +175,20 @@
                     <td>{{ $p->kategori }}</td>
                     <td>{{ $p->harga_produk }}</td>
                     <td>{{ $p->stok }}</td>
-                    <td>-</td>
+                    <td>
+                        <a href="/admin/produk/{{ $p->id_produk }}/edit" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <form action="/admin/produk/{{ $p->id_produk }}" method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Hapus produk ini?')">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+
                 </tr>
             @endforeach
         </table>

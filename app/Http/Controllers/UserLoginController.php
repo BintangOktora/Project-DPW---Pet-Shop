@@ -28,15 +28,7 @@ class UserLoginController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             session([
                 'user_login' => true,
-                'user_nama' => $user->nama_user
-            ]);
-
-            return redirect('/');
-        }
-
-        if ($user) {
-            session([
-                'user_login' => true,
+                'user_id' => $user->id_user,
                 'user_nama' => $user->nama_user
             ]);
 
@@ -50,6 +42,7 @@ class UserLoginController extends Controller
     public function logout()
     {
         session()->forget('user_login');
+        session()->forget('user_id');
         session()->forget('user_nama');
 
         return redirect('/');//logout balik ke home

@@ -3,76 +3,203 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login User</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Pet Shop</title>
 
     <style>
-        body {
-            min-height: 100vh;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* --- Reset & Global Styles (Sama dengan Register) --- */
+        * {
+            box-sizing: border-box;
         }
 
-        .login-box {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* --- Header Navigation (Sama dengan Register) --- */
+        .main-header {
+            background-color: #e67e22; /* Warna Oranye Pet Shop */
+            color: white;
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+             .header-nav { display: none; }
+        }
+
+        /* --- Form Container --- */
+        .container {
             width: 100%;
-            max-width: 360px;
+            max-width: 400px; 
+            margin: 80px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-size: 28px;
+        }
+
+        /* --- Form Elements --- */
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #e67e22;
+        }
+
+        /* --- Tombol Login --- */
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #e67e22; 
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background: #d35400;
+        }
+
+        /* --- Links (Footer Form) --- */
+        .form-footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-footer a {
+            text-decoration: none;
+        }
+
+        .register-link {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .register-link:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .back-link:hover {
+            color: #333;
+        }
+
+        /* --- Alerts (Error) --- */
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #f5c6cb;
+            text-align: center;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="card shadow login-box">
-        <div class="card-body p-4">
+    <header class="main-header">
+        <div class="header-logo">PET SHOP</div>
+        <nav class="header-nav">
+            <a href="/">HOME</a>
+            <a href="makanan-kucing">MAKANAN KUCING</a>
+            <a href="makanan-anjing">MAKANAN ANJING</a>
+        </nav>
+    </header>
 
-            <h4 class="text-center fw-bold mb-3">Login User</h4>
-            <div class="text-center mb-3">
-                <a href="/" class="btn btn-sm btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Back to Home
-                </a>
+    <div class="container">
+        <h2>Login Member</h2>
+
+        {{-- ERROR ALERT --}}
+        @if(session('error'))
+            <div class="alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <form action="/login" method="POST">
+            @csrf
+
+            <div>
+                <label for="username">Nama User / Username</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan username anda" required>
             </div>
 
-            {{-- ERROR --}}
-            @if(session('error'))
-                <div class="alert alert-danger text-center">
-                    {{ session('error') }}
-                </div>
-            @endif
-
-            <form action="/login" method="POST">
-                @csrf
-
-                <div class="mb-3">
-                    <label class="form-label">Nama User</label>
-                    <input type="text" name="username" class="form-control" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">
-                    Login
-                </button>
-            </form>
-
-            <div class="text-center mt-3">
-                <small>
-                    Belum punya akun?
-                    <a href="/register">Register</a>
-                </small>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password" required>
             </div>
 
-        </div>
+            <button type="submit">Masuk</button>
+
+            <div class="form-footer">
+                <span>Belum punya akun? </span>
+                <a href="/register" class="register-link">Daftar sekarang</a>
+                <br>
+                <a href="/" class="back-link">← Kembali ke Beranda</a>
+            </div>
+
+        </form>
     </div>
 
 </body>
-
 </html>
