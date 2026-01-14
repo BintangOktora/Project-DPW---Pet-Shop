@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create default admin user
-        Admin::create([
-            'username' => 'admin',
-            'password' => 'admin123',
-        ]);
+        // Create default admin user if not exists
+        Admin::firstOrCreate(
+            ['username' => 'admin'],
+            ['password' => 'admin123']
+        );
     }
 }

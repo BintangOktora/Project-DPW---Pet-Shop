@@ -12,13 +12,12 @@ class Admin extends Authenticatable
     // Nama tabel (karena bukan default "admins")
     protected $table = 'admin';
 
-    // Primary Key
-    protected $primaryKey = 'id_admin';
+    // Primary Key default 'id' - tidak perlu didefinisikan jika menggunakan 'id'
+    // protected $primaryKey = 'id';
 
-    // buat olom yang bisa diisi
+    // buat kolom yang bisa diisi
     protected $fillable = [
-        'nama_admin',
-        'email',
+        'username',
         'password'
     ];
 
