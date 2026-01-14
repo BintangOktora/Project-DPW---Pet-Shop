@@ -62,10 +62,10 @@ class DatabaseSeeder extends Seeder
     'password' => '$2y$12$r6NdzicUQWoOiV56qBVSIOruRUsBMIlBGwIqAAVxb3rH84If8zNP.',
   ],
 [
-    'nama_user' => 'arta1',
+    'nama_user' => 'arta',
     'no_hp' => '0333333333',
     'email' => 'arta1@gmail.com',
-    'password' => '$2y$12$UAX5sbv2Z4j//xOeRgamiuCUVrOqq.svCUiqa9ugjuCpYjM9uYZwW',
+    'password' => '$2y$12$X0UCSasRd0zkKU6YA45fSek71f0orXnjbfuqDl56Oj0jWa5QehCui',
   ],
 ];
 
