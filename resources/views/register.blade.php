@@ -4,232 +4,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Pet Shop</title>
-
+    <title>Daftar - Pet Shop</title>
     <style>
-        /* --- Reset & Global Styles --- */
+        /* --- Reset & Global --- */
         * {
             box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font yang bersih */
-            background: #f5f6f7; /* Latar belakang abu-abu sangat terang */
+            background-color: #ffffff;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #31353B;
         }
 
-        /* --- Header Navigation (Meniru Gambar) --- */
-        .main-header {
-            background-color: #e67e22; /* Warna Oranye Khas Pet Shop */
-            color: white;
-            padding: 15px 10%; /* Padding agar isi tidak terlalu ke pinggir */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
+        /* --- Header Logo --- */
         .header-logo {
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .header-nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            font-size: 14px;
-        }
-        
-        /* Menyembunyikan menu di layar kecil agar fokus ke form */
-        @media (max-width: 768px) {
-             .header-nav { display: none; }
-        }
-
-
-        /* --- Form Container --- */
-        .container {
-            width: 100%;
-            max-width: 450px; /* Sedikit lebih lebar */
-            margin: 60px auto; /* Jarak dari header */
-            background: white;
-            padding: 35px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Bayangan lebih halus */
-        }
-
-        h2 {
+            padding: 30px 0;
             text-align: center;
-            margin-bottom: 25px;
-            color: #2c3e50;
-            font-size: 28px;
+        }
+
+        .header-logo a {
+            font-size: 30px;
+            font-weight: 800;
+            color: #e67e22;
+            /* Warna Oranye Pet Shop */
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        /* --- Layout Container --- */
+        .main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 70vh;
+        }
+
+        /* Sisi Kiri: Ilustrasi */
+        .illustration-side {
+            flex: 1;
+            text-align: center;
+            padding-right: 40px;
+        }
+
+        .illustration-side img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+
+        .illustration-side h2 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .illustration-side p {
+            font-size: 15px;
+            color: #6D7588;
+        }
+
+        /* Sisi Kanan: Card Register */
+        .form-side {
+            width: 400px;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .form-title h3 {
+            font-size: 22px;
+            margin: 0 0 8px 0;
+        }
+
+        .form-title p {
+            font-size: 14px;
+            color: #6D7588;
+        }
+
+        .form-title a {
+            color: #e67e22;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         /* --- Form Elements --- */
-        label {
-            font-weight: 600;
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #555;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6D7588;
+            margin-bottom: 6px;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            transition: border-color 0.3s;
+            padding: 10px 12px;
+            border: 1px solid #E5E7E9;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
         }
 
-        /* Efek saat input diklik (Fokus) menjadi oranye */
         input:focus {
-            outline: none;
             border-color: #e67e22;
         }
 
-        /* --- Tombol Register (Utama) --- */
         button[type="submit"] {
             width: 100%;
             padding: 12px;
-            background: #e67e22; /* MENGGUNAKAN WARNA ORANYE TEMA */
+            background-color: #e67e22;
             color: white;
             border: none;
-            border-radius: 6px;
-            font-weight: bold;
+            border-radius: 8px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s;
+            margin-top: 10px;
+            transition: background 0.2s;
         }
 
         button[type="submit"]:hover {
-            background: #d35400; /* Oranye sedikit lebih gelap saat di-hover */
+            background-color: #d35400;
         }
 
-        /* --- Footer Links (Kembali & Login) --- */
-        .form-footer {
-            margin-top: 25px;
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .form-footer a.back-link {
-            color: #7f8c8d;
-            text-decoration: none;
-            margin-right: 15px;
-        }
-        
-        .form-footer a.back-link:hover {
-            text-decoration: underline;
-        }
-
-        .login-link {
-            color: #e67e22; /* Link login berwarna oranye */
-            font-weight: bold;
-            text-decoration: none;
-        }
-        
-        .login-link:hover {
-            text-decoration: underline;
-        }
-
-
-        /* --- Alerts --- */
+        /* --- Alert Styles --- */
         .success {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 6px;
+            background: #ebffef;
+            color: #219653;
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            font-size: 13px;
             border: 1px solid #c3e6cb;
         }
 
         .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 6px;
+            background: #fff5f5;
+            color: #eb5757;
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            font-size: 13px;
             border: 1px solid #f5c6cb;
         }
+
         .error ul {
-            margin: 0; padding-left: 20px;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 12px;
+            color: #6D7588;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .footer-text a {
+            color: #e67e22;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .illustration-side {
+                display: none;
+            }
+
+            .main-wrapper {
+                min-height: auto;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header class="main-header">
-        <div class="header-logo">PET SHOP</div>
-        <nav class="header-nav">
-            <a href="/">HOME</a>
-            <a href="#">MAKANAN KUCING</a>
-            <a href="#">MAKANAN ANJING</a>
-        </nav>
+    <header class="header-logo">
+        <a href="/">PET SHOP</a>
     </header>
 
-    <div class="container">
-        <h2>Buat Akun Baru</h2>
+    <div class="main-wrapper">
 
-        {{-- register sukses --}}
-        @if(session('success'))
-            <div class="success">
-                {{ session('success') }}
-            </div>
-        @endif
+        <div class="illustration-side">
+            <img src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kage/65610813.png"
+                alt="Pet Shop Illustration">
+            <h2>Jual Beli Mudah Hanya di Pet Shop</h2>
+            <p>Gabung dan rasakan kemudahan merawat hewan piaraanmu.</p>
+        </div>
 
-        {{-- register error --}}
-        @if($errors->any())
-            <div class="error">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form action="/register" method="POST">
-            @csrf
-
-            <div>
-                <label for="nama_user">Nama Lengkap</label>
-                <input type="text" id="nama_user" name="nama_user" placeholder="Contoh: Budi Santoso" required>
+        <div class="form-side">
+            <div class="form-title">
+                <h3>Daftar Sekarang</h3>
+                <p>Sudah punya akun? <a href="/login">Masuk di sini</a></p>
             </div>
 
-            <div>
-                <label for="email">Alamat Email</label>
-                <input type="email" id="email" name="email" placeholder="nama@email.com" required>
-            </div>
-            
-            <div>
-                <label for="no_hp">Nomor HP / WhatsApp</label>
-                <input type="text" id="no_hp" name="no_hp" placeholder="0812xxxxxxx" required>
-            </div>
+            {{-- --- LOGIC BLADE (TETAP DIJAGA) --- --}}
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Masukkan password yang kuat" required>
-            </div>
+            @if(session('success'))
+                <div class="success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
+            @if($errors->any())
+                <div class="error">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-            <button type="submit">Daftar Sekarang</button>
+            <form action="/register" method="POST">
+                @csrf
 
-            <div class="form-footer">
-                <a href="/" class="back-link">← Kembali ke Beranda</a>
-                <br><br>
-                <span>Sudah punya akun? </span>
-                <a href="/login" class="login-link">Login di sini!</a>
-            </div>
+                <div class="form-group">
+                    <label for="nama_user">Nama Lengkap</label>
+                    <input type="text" id="nama_user" name="nama_user" placeholder="Contoh: Budi Santoso" required>
+                </div>
 
-        </form>
+                <div class="form-group">
+                    <label for="email">Alamat Email</label>
+                    <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="no_hp">Nomor HP / WhatsApp</label>
+                    <input type="text" id="no_hp" name="no_hp" placeholder="0812xxxxxxx" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                </div>
+
+                <button type="submit">Daftar</button>
+
+                <div class="footer-text">
+                    Dengan mendaftar, saya menyetujui <br>
+                    <a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a>.
+                </div>
+            </form>
+        </div>
     </div>
 
 </body>
+
 </html>
