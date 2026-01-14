@@ -29,29 +29,67 @@ class SyncSeeder extends Command
     {
         $this->info('Sedang membaca data dari database...');
 
-        // 1. Ambil Data Admin
-        // Exclude ID dan Timestamps agar bersih
-        $admins = DB::table('admin')->get()->map(function ($item) {
-            $data = (array) $item;
-            unset($data['id']); // Sesuaikan dengan PK admin jika id
-            unset($data['id_admin']);
-            unset($data['created_at']);
-            unset($data['updated_at']);
-            return $data;
-        })->toArray();
+        // KONFIGURASI TABEL YANG AKAN DI-SYNC
+        // Tambahkan tabel lain di sini jika ingin disinkronkan juga.
+        $syncConfig = [
+            [
+                'table' => 'admin',
+                'model' => 'App\Models\Admin',
+                'unique_key' => 'username',
+                'pk_list' => ['id', 'id_admin'], // List kolom primary key/timestamp yang mau dihapus
+            ],
+            [
+                'table' => 'user',
+                'model' => 'App\Models\User',
+                'unique_key' => 'email',
+                'pk_list' => ['id_user'],
+            ],
+            [
+                'table' => 'produk',
+                'model' => 'App\Models\Produk',
+                'unique_key' => 'id_produk', // Gunakan ID saja jika nama produk bisa kembar, atau nama_produk jika unik
+                'pk_list' => [], // KITA JANGAN HAPUS ID_PRODUK, biar ID-nya konsisten antar laptop (relasi aman)
+            ]
+        ];
 
-        // 2. Ambil Data User
-        $users = DB::table('user')->get()->map(function ($item) {
-            $data = (array) $item;
-            unset($data['id_user']);
-            unset($data['created_at']);
-            unset($data['updated_at']);
-            return $data;
-        })->toArray();
+        // 1. Generate Data String & Import Statements
+        $dataStrings = [];
+        $imports = [];
+        $seederLogic = "";
 
-        // Format ke string PHP Array
-        $adminDataString = $this->prettyPrintArray($admins);
-        $userDataString = $this->prettyPrintArray($users);
+        foreach ($syncConfig as $config) {
+            $tableName = $config['table'];
+            $modelClass = $config['model'];
+            $uniqueKey = $config['unique_key'];
+            $pksToRemove = array_merge($config['pk_list'] ?? [], ['created_at', 'updated_at']);
+
+            // Tambahkan use statement
+            $imports[] = "use $modelClass;";
+
+            // Ambil data dari DB
+            $rawData = DB::table($tableName)->get()->map(function ($item) use ($pksToRemove) {
+                $data = (array) $item;
+                foreach ($pksToRemove as $pk) {
+                    unset($data[$pk]);
+                }
+                return $data;
+            })->toArray();
+
+            $varName = '$' . $tableName . 's'; // misal $users
+            $dataStrings[$tableName] = $this->prettyPrintArray($rawData);
+
+            // Buat logic foreach untuk seeder
+            $seederLogic .= "\n        // --- Sync Table: $tableName ---\n";
+            $seederLogic .= "        $varName = " . $dataStrings[$tableName] . ";\n\n";
+            $seederLogic .= "        foreach ($varName as \$item) {\n";
+            $seederLogic .= "            $modelClass::firstOrCreate(\n";
+            $seederLogic .= "                ['$uniqueKey' => \$item['$uniqueKey']],\n";
+            $seederLogic .= "                \$item\n";
+            $seederLogic .= "            );\n";
+            $seederLogic .= "        }\n";
+        }
+
+        $importsString = implode("\n", array_unique($imports));
 
         // Template File Seeder
         $content = <<<PHP
@@ -59,8 +97,7 @@ class SyncSeeder extends Command
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
-use App\Models\User;
+$importsString
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -72,39 +109,22 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      *
      * GENERATED AUTOMATICALLY BY: php artisan db:sync-seeder
-     * JANGAN EDIT MANUAL FILE INI JIKA INGIN DATA DINAMIS DARI DATABASE.
-     * CUKUP JALANKAN COMMAND LAGI SETELAH UPDATE DATA DI WEBSITE.
+     * DATE: {{DATE}}
      */
     public function run(): void
     {
-        // 1. Sync Admin Data
-        \$admins = $adminDataString;
-
-        foreach (\$admins as \$admin) {
-            Admin::firstOrCreate(
-                ['username' => \$admin['username']], // Kunci pengecekan agar tdk duplikat
-                \$admin
-            );
-        }
-
-        // 2. Sync User Data
-        \$users = $userDataString;
-
-        foreach (\$users as \$user) {
-            User::firstOrCreate(
-                ['email' => \$user['email']], // Kunci pengecekan agar tdk duplikat
-                \$user
-            );
-        }
+$seederLogic
     }
 }
 PHP;
 
+        $content = str_replace('{{DATE}}', date('Y-m-d H:i:s'), $content);
+
         // Tulis ulang file
         File::put(database_path('seeders/DatabaseSeeder.php'), $content);
 
-        $this->info('BERHASIL! DatabaseSeeder.php sudah diupdate dengan data terbaru dari database lokalmu.');
-        $this->info('Sekarang jalankan: git add . && git commit -m "update data" && git push');
+        $this->info('BERHASIL! DatabaseSeeder.php sudah diupdate untuk tabel: ' . implode(', ', array_column($syncConfig, 'table')));
+        $this->info('Sekarang jalankan: git add . && git commit -m "update seeder data" && git push');
     }
 
     /**

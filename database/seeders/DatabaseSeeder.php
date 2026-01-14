@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
     {
         // 1. Sync Admin Data
         $admins = [
-[
-    'username' => 'admin',
-    'password' => 'admin123',
-  ],
-];
+            [
+                'username' => 'admin',
+                'password' => 'admin123',
+            ],
+        ];
 
         foreach ($admins as $admin) {
             Admin::firstOrCreate(
@@ -37,43 +37,43 @@ class DatabaseSeeder extends Seeder
 
         // 2. Sync User Data
         $users = [
-[
-    'nama_user' => 'aku',
-    'no_hp' => '6536',
-    'email' => 'aku1@gmail.com',
-    'password' => '$2y$12$ngWp5gXmP2QTpp9r2gM7Q.zdUIcmQswnShZZVHPZ9B4pO8vNJpLQa',
-  ],
-[
-    'nama_user' => 'Oktora',
-    'no_hp' => '08138423777',
-    'email' => 'bintangoktora40@gmail.com',
-    'password' => '$2y$12$WBPuhOoa6Tr8rXUlb71BuuLD8rUW1bOx9cJm8tFK7Vaj0IQUSCVOi',
-  ],
-[
-    'nama_user' => 'YARSI',
-    'no_hp' => '0214206674',
-    'email' => 'yarsi@gmail.com',
-    'password' => '$2y$12$nKpvuFq518LYs76IPGm7Zu0BQYCuCVMm8mpGINypNfsOmCY5Feas.',
-  ],
-[
-    'nama_user' => 'YARSI2',
-    'no_hp' => '666666666666',
-    'email' => 'yarsitv@gmail.com',
-    'password' => '$2y$12$r6NdzicUQWoOiV56qBVSIOruRUsBMIlBGwIqAAVxb3rH84If8zNP.',
-  ],
-[
-    'nama_user' => 'arta1',
-    'no_hp' => '0333333333',
-    'email' => 'arta1@gmail.com',
-    'password' => '$2y$12$UAX5sbv2Z4j//xOeRgamiuCUVrOqq.svCUiqa9ugjuCpYjM9uYZwW',
-  ],
-];
+            [
+                'nama_user' => 'aku',
+                'no_hp' => '6536',
+                'email' => 'aku1@gmail.com',
+                'password' => '$2y$12$ngWp5gXmP2QTpp9r2gM7Q.zdUIcmQswnShZZVHPZ9B4pO8vNJpLQa',
+            ],
+            [
+                'nama_user' => 'Oktora',
+                'no_hp' => '08138423777',
+                'email' => 'bintangoktora40@gmail.com',
+                'password' => '$2y$12$WBPuhOoa6Tr8rXUlb71BuuLD8rUW1bOx9cJm8tFK7Vaj0IQUSCVOi',
+            ],
+            [
+                'nama_user' => 'YARSI',
+                'no_hp' => '0214206674',
+                'email' => 'yarsi@gmail.com',
+                'password' => '$2y$12$nKpvuFq518LYs76IPGm7Zu0BQYCuCVMm8mpGINypNfsOmCY5Feas.',
+            ],
+            [
+                'nama_user' => 'YARSI2',
+                'no_hp' => '666666666666',
+                'email' => 'yarsitv@gmail.com',
+                'password' => '$2y$12$r6NdzicUQWoOiV56qBVSIOruRUsBMIlBGwIqAAVxb3rH84If8zNP.',
+            ],
+            [
+                'nama_user' => 'arta1',
+                'no_hp' => '0333333333',
+                'email' => 'arta1@gmail.com',
+                'password' => '$2y$12$UAX5sbv2Z4j//xOeRgamiuCUVrOqq.svCUiqa9ugjuCpYjM9uYZwW',
+            ],
+        ];
 
         foreach ($users as $user) {
             User::firstOrCreate(
                 ['email' => $user['email']], // Kunci pengecekan agar tdk duplikat
                 $user
             );
-        }
+        }   
     }
 }
