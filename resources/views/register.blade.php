@@ -194,6 +194,7 @@
             }
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -255,7 +256,14 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                    <div style="position: relative;">
+                        <input type="password" id="password" name="password" placeholder="Masukkan password" required
+                            style="padding-right: 40px;">
+                        <span onclick="togglePasswordVisibility()"
+                            style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6D7588;">
+                            <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                        </span>
+                    </div>
                 </div>
 
                 <button type="submit">Daftar</button>
@@ -268,6 +276,22 @@
         </div>
     </div>
 
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePasswordIcon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('bi-eye');
+                toggleIcon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('bi-eye-slash');
+                toggleIcon.classList.add('bi-eye');
+            }
+        }
+    </script>
 </body>
 
 </html>

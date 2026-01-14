@@ -22,13 +22,14 @@
 
         /* --- Header Navigation (Sama dengan Register) --- */
         .main-header {
-            background-color: #e67e22; /* Warna Oranye Pet Shop */
+            background-color: #e67e22;
+            /* Warna Oranye Pet Shop */
             color: white;
             padding: 15px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .header-logo {
@@ -46,13 +47,15 @@
         }
 
         @media (max-width: 768px) {
-             .header-nav { display: none; }
+            .header-nav {
+                display: none;
+            }
         }
 
         /* --- Form Container --- */
         .container {
             width: 100%;
-            max-width: 400px; 
+            max-width: 400px;
             margin: 80px auto;
             background: white;
             padding: 35px;
@@ -94,7 +97,7 @@
         button[type="submit"] {
             width: 100%;
             padding: 12px;
-            background: #e67e22; 
+            background: #e67e22;
             color: white;
             border: none;
             border-radius: 6px;
@@ -125,7 +128,7 @@
             color: #e67e22;
             font-weight: bold;
         }
-        
+
         .register-link:hover {
             text-decoration: underline;
         }
@@ -136,7 +139,7 @@
             color: #7f8c8d;
             font-size: 13px;
         }
-        
+
         .back-link:hover {
             color: #333;
         }
@@ -153,6 +156,7 @@
             font-size: 14px;
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -186,7 +190,14 @@
 
             <div>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                <div style="position: relative;">
+                    <input type="password" id="password" name="password" placeholder="Masukkan password" required
+                        style="padding-right: 40px;">
+                    <span onclick="togglePasswordVisibility()"
+                        style="position: absolute; right: 12px; top: 38%; transform: translateY(-50%); cursor: pointer; color: #6D7588;">
+                        <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                    </span>
+                </div>
             </div>
 
             <button type="submit">Masuk</button>
@@ -201,5 +212,22 @@
         </form>
     </div>
 
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePasswordIcon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('bi-eye');
+                toggleIcon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('bi-eye-slash');
+                toggleIcon.classList.add('bi-eye');
+            }
+        }
+    </script>
 </body>
+
 </html>

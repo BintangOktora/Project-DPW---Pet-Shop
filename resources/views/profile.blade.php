@@ -107,15 +107,18 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama_user" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama_user" name="nama_user" value="{{ old('nama_user', $user->nama_user) }}" required>
+                        <input type="text" class="form-control" id="nama_user" name="nama_user"
+                            value="{{ old('nama_user', $user->nama_user) }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" required>
+                        <input type="email" class="form-control" id="email" name="email"
+                            value="{{ old('email', $user->email) }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="no_hp" class="form-label">Nomor HP</label>
-                        <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ old('no_hp', $user->no_hp) }}" required>
+                        <input type="text" class="form-control" id="no_hp" name="no_hp"
+                            value="{{ old('no_hp', $user->no_hp) }}" required>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
@@ -133,15 +136,35 @@
                     @csrf
                     <div class="mb-3">
                         <label for="current_password" class="form-label">Password Saat Ini</label>
-                        <input type="password" class="form-control" id="current_password" name="current_password" required>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="current_password" name="current_password"
+                                required>
+                            <button class="btn btn-outline-secondary toggle-password" type="button"
+                                data-target="#current_password">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="new_password" class="form-label">Password Baru</label>
-                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="new_password" name="new_password" required>
+                            <button class="btn btn-outline-secondary toggle-password" type="button"
+                                data-target="#new_password">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="new_password_confirmation" class="form-label">Konfirmasi Password Baru</label>
-                        <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="new_password_confirmation"
+                                name="new_password_confirmation" required>
+                            <button class="btn btn-outline-secondary toggle-password" type="button"
+                                data-target="#new_password_confirmation">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-danger">Update Password</button>
@@ -152,6 +175,28 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButtons = document.querySelectorAll('.toggle-password');
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetInput = document.querySelector(this.getAttribute('data-target'));
+                    const icon = this.querySelector('i');
+
+                    if (targetInput.type === 'password') {
+                        targetInput.type = 'text';
+                        icon.classList.remove('bi-eye');
+                        icon.classList.add('bi-eye-slash');
+                    } else {
+                        targetInput.type = 'password';
+                        icon.classList.remove('bi-eye-slash');
+                        icon.classList.add('bi-eye');
+                    }
+                });
+            });
+        });
+    </script>
 
     <footer class="text-center py-4 bg-light mt-5">
         <p class="text-muted small">&copy; {{ date('Y') }} Pet Shop Indonesia</p>
