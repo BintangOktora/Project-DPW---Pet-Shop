@@ -38,6 +38,12 @@ class DatabaseSeeder extends Seeder
         // 2. Sync User Data
         $users = [
 [
+    'nama_user' => 'aku',
+    'no_hp' => '6536',
+    'email' => 'aku1@gmail.com',
+    'password' => '$2y$12$ngWp5gXmP2QTpp9r2gM7Q.zdUIcmQswnShZZVHPZ9B4pO8vNJpLQa',
+  ],
+[
     'nama_user' => 'Oktora',
     'no_hp' => '08138423777',
     'email' => 'bintangoktora40@gmail.com',
@@ -56,10 +62,10 @@ class DatabaseSeeder extends Seeder
     'password' => '$2y$12$r6NdzicUQWoOiV56qBVSIOruRUsBMIlBGwIqAAVxb3rH84If8zNP.',
   ],
 [
-    'nama_user' => 'Erere',
-    'no_hp' => '081892121',
-    'email' => 'erere@gmail.com',
-    'password' => '$2y$12$nlbZF.s1AlnAqDWv6/0HD.j8Df2/ZSuoHHiVz8MRrvUM3oKYAMO8e',
+    'nama_user' => 'arta1',
+    'no_hp' => '0333333333',
+    'email' => 'arta1@gmail.com',
+    'password' => '$2y$12$UAX5sbv2Z4j//xOeRgamiuCUVrOqq.svCUiqa9ugjuCpYjM9uYZwW',
   ],
 ];
 
