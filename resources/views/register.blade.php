@@ -178,11 +178,6 @@
             line-height: 1.5;
         }
 
-        .footer-text a {
-            color: #e67e22;
-            text-decoration: none;
-        }
-
         /* Responsive */
         @media (max-width: 800px) {
             .illustration-side {
@@ -206,8 +201,7 @@
     <div class="main-wrapper">
 
         <div class="illustration-side">
-            <img src="#"
-                alt="Pet Shop Illustration">
+            <img src="/images/anjing2.png" alt="Pet Shop Illustration">
             <h2>Jual Beli Mudah Hanya di Pet Shop</h2>
             <p>Gabung dan rasakan kemudahan merawat hewan piaraanmu.</p>
         </div>
@@ -217,8 +211,6 @@
                 <h3>Daftar Sekarang</h3>
                 <p>Sudah punya akun? <a href="/login">Masuk di sini</a></p>
             </div>
-
-            {{-- --- LOGIC BLADE (TETAP DIJAGA) --- --}}
 
             @if(session('success'))
                 <div class="success">
@@ -270,7 +262,7 @@
 
                 <div class="footer-text">
                     Dengan mendaftar, saya menyetujui <br>
-                    <a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a>.
+                    <a>Syarat & Ketentuan</a> serta <a>Kebijakan Privasi</a>.
                 </div>
             </form>
         </div>
