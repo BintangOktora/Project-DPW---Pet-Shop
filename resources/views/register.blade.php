@@ -206,7 +206,7 @@
     <div class="main-wrapper">
 
         <div class="illustration-side">
-            <img src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kage/65610813.png"
+            <img src="#"
                 alt="Pet Shop Illustration">
             <h2>Jual Beli Mudah Hanya di Pet Shop</h2>
             <p>Gabung dan rasakan kemudahan merawat hewan piaraanmu.</p>
@@ -241,23 +241,23 @@
 
                 <div class="form-group">
                     <label for="nama_user">Nama Lengkap</label>
-                    <input type="text" id="nama_user" name="nama_user" placeholder="Contoh: Budi Santoso" required>
+                    <input type="text" id="nama_user" name="nama_user" placeholder="Name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Alamat Email</label>
-                    <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
                 </div>
 
                 <div class="form-group">
                     <label for="no_hp">Nomor HP / WhatsApp</label>
-                    <input type="text" id="no_hp" name="no_hp" placeholder="0812xxxxxxx" required>
+                    <input type="text" id="no_hp" name="no_hp" placeholder="Phone Number" required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
                     <div style="position: relative;">
-                        <input type="password" id="password" name="password" placeholder="Masukkan password" required
+                        <input type="password" id="password" name="password" placeholder="Password" required
                             style="padding-right: 40px;">
                         <span onclick="togglePasswordVisibility()"
                             style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #6D7588;">

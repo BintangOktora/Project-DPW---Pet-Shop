@@ -172,35 +172,71 @@
                 </form>
             </div>
         </div>
+
+        <div class="card mt-4 border-danger">
+            <div class="card-header bg-danger text-white">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>Hapus Akun
+            </div>
+            <div class="card-body p-4">
+                <div class="alert alert-warning">
+                    <strong>Peringatan!</strong> Tindakan ini tidak dapat dibatalkan. Semua data akun Anda akan dihapus
+                    secara permanen.
+                </div>
+                <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal"
+                    data-bs-target="#deleteAccountModal">
+                    Hapus Akun Saya
+                </button>
+            </div>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleButtons = document.querySelectorAll('.toggle-password');
+    <!-- untuk menghapus akun secara permanen dari database-->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Hapus akun</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <form action="/profile/delete" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Ya, Hapus Akun Saya</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-            toggleButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const targetInput = document.querySelector(this.getAttribute('data-target'));
-                    const icon = this.querySelector('i');
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const toggleButtons = document.querySelectorAll('.toggle-password');
 
-                    if (targetInput.type === 'password') {
-                        targetInput.type = 'text';
-                        icon.classList.remove('bi-eye');
-                        icon.classList.add('bi-eye-slash');
-                    } else {
-                        targetInput.type = 'password';
-                        icon.classList.remove('bi-eye-slash');
-                        icon.classList.add('bi-eye');
-                    }
+                toggleButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const targetInput = document.querySelector(this.getAttribute('data-target'));
+                        const icon = this.querySelector('i');
+
+                        if (targetInput.type === 'password') {
+                            targetInput.type = 'text';
+                            icon.classList.remove('bi-eye');
+                            icon.classList.add('bi-eye-slash');
+                        } else {
+                            targetInput.type = 'password';
+                            icon.classList.remove('bi-eye-slash');
+                            icon.classList.add('bi-eye');
+                        }
+                    });
                 });
             });
-        });
-    </script>
+        </script>
 
-    <footer class="text-center py-4 bg-light mt-5">
-        <p class="text-muted small">&copy; {{ date('Y') }} Pet Shop Indonesia</p>
-    </footer>
 </body>
 
 </html>
