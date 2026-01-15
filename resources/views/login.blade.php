@@ -7,7 +7,7 @@
     <title>Login - Pet Shop</title>
 
     <style>
-        /* --- Reset & Global Styles (Sama dengan Register) --- */
+        /* --- Reset & Global Styles --- */
         * {
             box-sizing: border-box;
         }
@@ -20,7 +20,7 @@
             color: #333;
         }
 
-        /* --- Header Navigation (Sama dengan Register) --- */
+        /* --- Header Navigation --- */
         .main-header {
             background-color: #e67e22;
             /* Warna Oranye Pet Shop */
@@ -61,6 +61,7 @@
             padding: 35px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
         }
 
         h2 {
@@ -160,17 +161,11 @@
 </head>
 
 <body>
-
-    <header class="main-header">
-        <div class="header-logo">PET SHOP</div>
-        <nav class="header-nav">
-            <a href="/">HOME</a>
-            <a href="makanan-kucing">MAKANAN KUCING</a>
-            <a href="makanan-anjing">MAKANAN ANJING</a>
-        </nav>
-    </header>
-
     <div class="container">
+        <a href="/" class="text-secondary"
+            style="position: absolute; top: 15px; left: 15px; text-decoration: none; font-size: 1.2rem;">
+            <i class="bi bi-x-lg"></i>
+        </a>
         <h2>Login Member</h2>
 
         {{-- ERROR ALERT --}}
@@ -184,14 +179,14 @@
             @csrf
 
             <div>
-                <label for="username">Nama User / Username</label>
-                <input type="text" id="username" name="username" placeholder="Masukkan username anda" required>
+                <label for="username">Nama / Username</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan username" required>
             </div>
 
             <div>
                 <label for="password">Password</label>
                 <div style="position: relative;">
-                    <input type="password" id="password" name="password" placeholder="Masukkan password" required
+                    <input type="password" id="password" name="password" placeholder="Password" required
                         style="padding-right: 40px;">
                     <span onclick="togglePasswordVisibility()"
                         style="position: absolute; right: 12px; top: 38%; transform: translateY(-50%); cursor: pointer; color: #6D7588;">
@@ -205,8 +200,6 @@
             <div class="form-footer">
                 <span>Belum punya akun? </span>
                 <a href="/register" class="register-link">Daftar sekarang</a>
-                <br>
-                <a href="/" class="back-link">← Kembali ke Beranda</a>
             </div>
 
         </form>
