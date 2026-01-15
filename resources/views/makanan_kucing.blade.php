@@ -165,16 +165,6 @@
             </nav>
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="fw-bold m-0" style="color: #333;">Katalog Makanan Kucing</h2>
-                
-                <div class="d-flex align-items-center">
-                    <span class="me-2 text-muted d-none d-md-block">Urutkan:</span>
-                    <select class="form-select form-select-sm" style="width: 150px; border-color: #e4710cff;">
-                        <option selected>Terpopuler</option>
-                        <option value="1">Harga Terendah</option>
-                        <option value="2">Harga Tertinggi</option>
-                        <option value="3">Terbaru</option>
-                    </select>
-                </div>
             </div>
         </div>
     </div>
@@ -278,7 +268,6 @@
             <li class="page-item disabled"><a class="page-link">Previous</a></li>
             <li class="page-item active"><a class="page-link">1</a></li>
             <li class="page-item"><a class="page-link" href="/makanan-kucing2">2</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing3">3</a></li>
             <li class="page-item"><a class="page-link" href="/makanan-kucing2">Next</a></li>
         </ul>
     </div>
