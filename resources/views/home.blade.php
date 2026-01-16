@@ -119,12 +119,8 @@
             </div>
         @endif
     </div>
-
     <div class="container my-5">
-        <h2 class="mb-4">PRODUK TERBARU</h2>
-
-    <div class="container my-5">
-        <h2 class="mb-4">PRODUK TERBARU</h2>
+        <h2 class="mb-4">Produk - Produk kami</h2>
 
         <div class="row">
             @foreach($produk as $item)

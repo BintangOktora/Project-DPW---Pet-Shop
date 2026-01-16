@@ -52,7 +52,7 @@
             }
         }
 
-        /* --- Form Container --- */
+        /* --- untuk Form Container --- */
         .container {
             width: 100%;
             max-width: 400px;
@@ -71,7 +71,7 @@
             font-size: 28px;
         }
 
-        /* --- Form Elements --- */
+        /* --- untuk elemen Form (mengatur penempatan) --- */
         label {
             font-weight: 600;
             display: block;

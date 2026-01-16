@@ -183,7 +183,7 @@
             </div>
         </div>
     </nav>
-        <div class="category-header">
+    <div class="category-header">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-2">
@@ -192,103 +192,107 @@
                 </ol>
             </nav>
             <div class="d-flex justify-content-between align-items-center">
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-md-6 d-flex">
-                <div class="d-flex flex-column justify-content-center me-3" style="width: 60px;">
-                    <div class="feature-badge"><i class="bi bi-box-seam text-primary"></i><span>GARANSI</span></div>
-                    <div class="feature-badge"><i class="bi bi-tag text-danger"></i><span
-                            class="text-danger">PROMO</span></div>
-                </div>
-                <div class="flex-grow-1 text-center">
-                    <img src="{{ $produk->gambar ?: '/images/whiskas.png' }}" alt="Produk" class="main-product-img" id="productImage">
-                </div>
-            </div>
-            <div class="col-md-6 pt-3 ps-md-5">
-                <h1 class="product-title">{{ $produk->nama_produk }}</h1>
-                <div class="product-price">Rp {{ number_format($produk->harga_produk, 0, ',', '.') }}</div>
-                
-                <!-- Form untuk menambahkan ke keranjang -->
-                <div class="d-flex gap-2">
-                    <form action="/keranjang/add" method="POST">
-                        @csrf
-                        <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
-                        <input type="hidden" name="nama_produk" value="{{ $produk->nama_produk }}">
-                        <input type="hidden" name="gambar_produk" value="{{ $produk->gambar }}">
-                        <input type="hidden" name="harga" value="{{ $produk->harga_produk }}">
-                        <input type="hidden" name="jumlah" value="1">
-                        <button type="submit" class="btn-add-cart">+ Keranjang</button>
-                    </form>
-
-                    <form action="/wishlist/add" method="POST">
-                        @csrf
-                        <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
-                        <input type="hidden" name="nama_produk" value="{{ $produk->nama_produk }}">
-                        <input type="hidden" name="gambar_produk" value="{{ $produk->gambar }}">
-                        <input type="hidden" name="harga" value="{{ $produk->harga_produk }}">
-                        <button type="submit" class="btn btn-outline-danger px-4" style="margin-top: 20px; font-weight: bold; border-radius: 5px; height: 46px;">
-                            <i class="bi bi-heart"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-md-10 offset-md-1">
-                <h2 class="review-section-title">Review Produk</h2>
-
-                <div class="review-form-box">
-                    <h5>Tulis Pengalamanmu</h5>
-                    <form id="formReview">
-                        <div class="mb-3">
-                            <label class="form-label small text-muted">Komentar Anda</label>
-                            <textarea class="form-control" id="inputKomentar" rows="3"
-                                placeholder="Contoh: Barangnya bagus, kucing saya suka!" required></textarea>
+                <div class="container my-5">
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <div class="d-flex flex-column justify-content-center me-3" style="width: 60px;">
+                                <div class="feature-badge"><i
+                                        class="bi bi-box-seam text-primary"></i><span>GARANSI</span></div>
+                                <div class="feature-badge"><i class="bi bi-tag text-danger"></i><span
+                                        class="text-danger">PROMO</span></div>
+                            </div>
+                            <div class="flex-grow-1 text-center">
+                                <img src="{{ $produk->gambar ?: '/images/whiskas.png' }}" alt="Produk"
+                                    class="main-product-img" id="productImage">
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-submit-review px-4">Kirim Review</button>
-                        </div>
-                    </form>
-                </div>
+                        <div class="col-md-6 pt-3 ps-md-5">
+                            <h1 class="product-title">{{ $produk->nama_produk }}</h1>
+                            <div class="product-price">Rp {{ number_format($produk->harga_produk, 0, ',', '.') }}</div>
 
-                <div id="reviewList">
-                    <div class="review-card">
-                        <div class="d-flex align-items-center">
-                            <div class="review-user">Budi Santoso</div>
-                            <span class="review-date"> - 2 hari lalu</span>
+                            <!-- Form untuk menambahkan ke keranjang -->
+                            <div class="d-flex gap-2">
+                                <form action="/keranjang/add" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
+                                    <input type="hidden" name="nama_produk" value="{{ $produk->nama_produk }}">
+                                    <input type="hidden" name="gambar_produk" value="{{ $produk->gambar }}">
+                                    <input type="hidden" name="harga" value="{{ $produk->harga_produk }}">
+                                    <input type="hidden" name="jumlah" value="1">
+                                    <button type="submit" class="btn-add-cart">+ Keranjang</button>
+                                </form>
+
+                                <form action="/wishlist/add" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
+                                    <input type="hidden" name="nama_produk" value="{{ $produk->nama_produk }}">
+                                    <input type="hidden" name="gambar_produk" value="{{ $produk->gambar }}">
+                                    <input type="hidden" name="harga" value="{{ $produk->harga_produk }}">
+                                    <button type="submit" class="btn btn-outline-danger px-4"
+                                        style="margin-top: 20px; font-weight: bold; border-radius: 5px; height: 46px;">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="review-comment">barangnya bagus</div>
                     </div>
 
-                    <div class="review-card">
-                        <div class="d-flex align-items-center">
-                            <div class="review-user">Siti Aminah</div>
-                            <span class="review-date"> - 5 hari lalu</span>
+                    <div class="row">
+                        <div class="col-12 col-md-10 offset-md-1">
+                            <h2 class="review-section-title">Review Produk</h2>
+
+                            <div class="review-form-box">
+                                <h5>Tulis Pengalamanmu</h5>
+                                <form id="formReview">
+                                    <div class="mb-3">
+                                        <label class="form-label small text-muted">Komentar Anda</label>
+                                        <textarea class="form-control" id="inputKomentar" rows="3"
+                                            placeholder="Contoh: Barangnya bagus, kucing saya suka!"
+                                            required></textarea>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-submit-review px-4">Kirim Review</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div id="reviewList">
+                                <div class="review-card">
+                                    <div class="d-flex align-items-center">
+                                        <div class="review-user">Budi Santoso</div>
+                                        <span class="review-date"> - 2 hari lalu</span>
+                                    </div>
+                                    <div class="review-comment">barangnya bagus</div>
+                                </div>
+
+                                <div class="review-card">
+                                    <div class="d-flex align-items-center">
+                                        <div class="review-user">Siti Aminah</div>
+                                        <span class="review-date"> - 5 hari lalu</span>
+                                    </div>
+                                    <div class="review-comment">kucing saya suka!</div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="review-comment">kucing saya suka!</div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </div>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                <script>
 
-    <script>
-   
-        document.getElementById('formReview').addEventListener('submit', function (e) {
-            e.preventDefault();
+                    document.getElementById('formReview').addEventListener('submit', function (e) {
+                        e.preventDefault();
 
-            const komentar = document.getElementById('inputKomentar').value;
-            const namaUser = "Anda (User)";
-            const waktu = "Baru saja";
+                        const komentar = document.getElementById('inputKomentar').value;
+                        const namaUser = "Anda (User)";
+                        const waktu = "Baru saja";
 
-            const newReviewCard = document.createElement('div');
-            newReviewCard.className = 'review-card';
+                        const newReviewCard = document.createElement('div');
+                        newReviewCard.className = 'review-card';
 
-            newReviewCard.innerHTML = `
+                        newReviewCard.innerHTML = `
                 <div class="d-flex align-items-center">
                     <div class="review-user text-primary">${namaUser}</div>
                     <span class="review-date"> - ${waktu}</span>
@@ -296,13 +300,13 @@
                 <div class="review-comment">${komentar}</div>
             `;
 
-            const listContainer = document.getElementById('reviewList');
-            listContainer.prepend(newReviewCard);
+                        const listContainer = document.getElementById('reviewList');
+                        listContainer.prepend(newReviewCard);
 
-            document.getElementById('inputKomentar').value = '';
-            alert('Terima kasih! Review Anda berhasil ditambahkan.');
-        });
-    </script>
+                        document.getElementById('inputKomentar').value = '';
+                        alert('Terima kasih! Review Anda berhasil ditambahkan.');
+                    });
+                </script>
 </body>
 
 </html>
