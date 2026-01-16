@@ -44,6 +44,13 @@ class KeranjangController extends Controller
         }
 
         $userId = session('user_id');
+        $produk = \App\Models\Produk::find($request->id_produk);
+
+        if (!$produk) {
+            return redirect()->back()->with('error', 'Produk tidak ditemukan');
+        }
+
+        $jumlahBaru = $request->jumlah ?? 1;
 
         // Cek apakah produk sudah ada di keranjang
         $existingItem = Keranjang::where('id_user', $userId)
@@ -51,10 +58,19 @@ class KeranjangController extends Controller
             ->first();
 
         if ($existingItem) {
+            $totalJumlah = $existingItem->jumlah + $jumlahBaru;
+            // Cek stok
+            if ($totalJumlah > $produk->stok) {
+                return redirect()->back()->with('error', 'Stok tidak mencukupi. Stok tersedia: ' . $produk->stok);
+            }
             // Jika sudah ada, tambahkan jumlahnya
-            $existingItem->jumlah += $request->jumlah ?? 1;
+            $existingItem->jumlah = $totalJumlah;
             $existingItem->save();
         } else {
+            // Cek stok
+            if ($jumlahBaru > $produk->stok) {
+                return redirect()->back()->with('error', 'Stok tidak mencukupi. Stok tersedia: ' . $produk->stok);
+            }
             // Jika belum ada, tambahkan item baru
             Keranjang::create([
                 'id_user' => $userId,
@@ -62,7 +78,7 @@ class KeranjangController extends Controller
                 'nama_produk' => $request->nama_produk,
                 'gambar_produk' => $request->gambar_produk,
                 'harga' => $request->harga,
-                'jumlah' => $request->jumlah ?? 1
+                'jumlah' => $jumlahBaru
             ]);
         }
 
@@ -84,6 +100,10 @@ class KeranjangController extends Controller
             ->first();
 
         if ($item) {
+            $produk = \App\Models\Produk::find($item->id_produk);
+            if ($produk && $item->jumlah + 1 > $produk->stok) {
+                return redirect('/keranjang')->with('error', 'Stok tidak mencukupi');
+            }
             $item->jumlah += 1;
             $item->save();
         }
@@ -155,7 +175,15 @@ class KeranjangController extends Controller
         $totalAll = 0;
         $today = Carbon::now()->format('Y-m-d');
 
-        // Pindahkan setiap item ke tabel checkout
+        // Validasi stok untuk semua item terlebih dahulu
+        foreach ($items as $item) {
+            $produk = \App\Models\Produk::find($item->id_produk);
+            if (!$produk || $item->jumlah > $produk->stok) {
+                return redirect('/keranjang')->with('error', 'Stok produk "' . $item->nama_produk . '" tidak mencukupi. Sisa stok: ' . ($produk ? $produk->stok : 0));
+            }
+        }
+
+        // Jika semua stok aman, lakukan transaksi
         foreach ($items as $item) {
             $total = $item->harga * $item->jumlah;
             $totalAll += $total;
@@ -168,12 +196,17 @@ class KeranjangController extends Controller
                 'total' => $total,
                 'tgl_transaksi' => $today
             ]);
+
+            // Kurangi stok produk
+            $produk = \App\Models\Produk::find($item->id_produk);
+            $produk->stok -= $item->jumlah;
+            $produk->save();
         }
 
         // Hapus semua item dari keranjang setelah checkout
         Keranjang::where('id_user', $userId)->delete();
 
-        return redirect('/')->with('success', 'Checkout berhasil! Total pembayaran: Rp ' . number_format($totalAll, 0, ',', '.'));
+        return redirect('/')->with('success', 'Checkout berhasil! Stok produk telah diperbarui. Total pembayaran: Rp ' . number_format($totalAll, 0, ',', '.'));
     }
 
     /**

@@ -201,23 +201,36 @@
                             class="text-danger">PROMO</span></div>
                 </div>
                 <div class="flex-grow-1 text-center">
-                    <img src="/images/whiskas.png" alt="Produk" class="main-product-img" id="productImage">
+                    <img src="{{ $produk->gambar ?: '/images/whiskas.png' }}" alt="Produk" class="main-product-img" id="productImage">
                 </div>
             </div>
             <div class="col-md-6 pt-3 ps-md-5">
-                <h1 class="product-title">Whiskas Ocean Fish Canned 400gr</h1>
-                <div class="product-price">Rp 26.500</div>
+                <h1 class="product-title">{{ $produk->nama_produk }}</h1>
+                <div class="product-price">Rp {{ number_format($produk->harga_produk, 0, ',', '.') }}</div>
                 
                 <!-- Form untuk menambahkan ke keranjang -->
-                <form action="/keranjang/add" method="POST">
-                    @csrf
-                    <input type="hidden" name="id_produk" value="1">
-                    <input type="hidden" name="nama_produk" value="Whiskas Ocean Fish Canned 400gr">
-                    <input type="hidden" name="gambar_produk" value="/images/whiskas.png">
-                    <input type="hidden" name="harga" value="26500">
-                    <input type="hidden" name="jumlah" value="1">
-                    <button type="submit" class="btn-add-cart">+ Keranjang</button>
-                </form>
+                <div class="d-flex gap-2">
+                    <form action="/keranjang/add" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
+                        <input type="hidden" name="nama_produk" value="{{ $produk->nama_produk }}">
+                        <input type="hidden" name="gambar_produk" value="{{ $produk->gambar }}">
+                        <input type="hidden" name="harga" value="{{ $produk->harga_produk }}">
+                        <input type="hidden" name="jumlah" value="1">
+                        <button type="submit" class="btn-add-cart">+ Keranjang</button>
+                    </form>
+
+                    <form action="/wishlist/add" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
+                        <input type="hidden" name="nama_produk" value="{{ $produk->nama_produk }}">
+                        <input type="hidden" name="gambar_produk" value="{{ $produk->gambar }}">
+                        <input type="hidden" name="harga" value="{{ $produk->harga_produk }}">
+                        <button type="submit" class="btn btn-outline-danger px-4" style="margin-top: 20px; font-weight: bold; border-radius: 5px; height: 46px;">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
 

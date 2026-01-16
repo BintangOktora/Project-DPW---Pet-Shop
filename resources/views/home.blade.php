@@ -88,7 +88,8 @@
                     <span class="navbar-text text-white me-3">
                         Halo, {{ session('user_nama') }}
                     </span>
-                    <a href="/profile" class="btn btn-sm btn-outline-light me-2">Profile</a>
+                    <a href="/wishlist" class="text-white ms-3 fs-5 me-2"><i class="bi bi-heart"></i></a>
+                    <a href="/keranjang" class="text-white ms-3 fs-5 me-2"><i class="bi bi-bag"></i></a>
                     <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
                 @else
 
@@ -104,76 +105,71 @@
         <p class="lead position-relative" style="z-index: 1;">Sahabat terbaik untuk hewan kesayangan Anda</p>
     </div>
 
+    <div class="container mt-4">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    </div>
+
+    <div class="container my-5">
+        <h2 class="mb-4">PRODUK TERBARU</h2>
+
     <div class="container my-5">
         <h2 class="mb-4">PRODUK TERBARU</h2>
 
         <div class="row">
+            @foreach($produk as $item)
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src='/images/whiskas.png' class="card-img-top" alt="Makanan Kucing">
+                    <img src='{{ $item->gambar ?: "/images/whiskas.png" }}' class="card-img-top" alt="{{ $item->nama_produk }}">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Whiskas Ocean Fish Canned 400gr</h5>
-                        <p class="card-text text-danger fw-bold">Rp 50.000</p>
-                        <a href="/detail" class="btn btn-primary w-100">Detail</a>
-                    </div>
-                </div>
-            </div>
+                        <h5 class="card-title">{{ $item->nama_produk }}</h5>
+                        <p class="card-text text-danger fw-bold">Rp {{ number_format($item->harga_produk, 0, ',', '.') }}</p>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="/detail/{{ $item->id_produk }}" class="btn btn-primary w-100">Detail</a>
+                            
+                            <div class="d-flex gap-1">
+                                <form action="/keranjang/add" method="POST" class="flex-grow-1">
+                                    @csrf
+                                    <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                    <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                    <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                    <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                    <input type="hidden" name="jumlah" value="1">
+                                    <button type="submit" class="btn btn-outline-primary w-100">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </form>
 
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src='/images/anjing.png' class="card-img-top" alt="Makanan Anjing">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">MR.VET D1 Holistic Lamb Dog Food 1.4KG</h5>
-                        <p class="card-text text-danger fw-bold">Rp 75.000</p>
-                        <a href="/detail" class="btn btn-primary w-100">Detail</a>
+                                <form action="/wishlist/add" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                    <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                    <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                    <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src='/images/pearl.png' class="card-img-top" alt="Snack Hewan">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Pearl Nutro Multivitamin Kucing 120g</h5>
-                        <p class="card-text text-danger fw-bold">Rp 120.000</p>
-                        <a href="#" class="btn btn-primary w-100">Detail</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src='/images/shampoo.png' class="card-img-top" alt="Mainan Kucing">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">ORGO Cat Shampoo 1L 2 in 1 - Shampoo</h5>
-                        <p class="card-text text-danger fw-bold">Rp 35.000</p>
-                        <a href="#" class="btn btn-primary w-100">Detail</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src='/images/baju.png' class="card-img-top" alt="Kalung Hewan">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Set Baju Santa & Topi – Kostum Natal Nyaman untuk Kucing & Anjing</h5>
-                        <p class="card-text text-danger fw-bold">Rp 45.000</p>
-                        <a href="#" class="btn btn-primary w-100">Detail</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src='/images/parfum.png' class="card-img-top" alt="Shampoo">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">ORGO Pet Perfume 250ml Strawflower - Parfum Hewan Wangi</h5>
-                        <p class="card-text text-danger fw-bold">Rp 60.000</p>
-                        <a href="#" class="btn btn-primary w-100">Detail</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

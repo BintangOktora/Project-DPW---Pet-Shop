@@ -20,6 +20,13 @@ Route::post('/keranjang/hapus/{id}', [KeranjangController::class, 'destroy']);
 Route::post('/keranjang/checkout', [KeranjangController::class, 'checkout']);
 Route::post('/keranjang/clear', [KeranjangController::class, 'clear']);
 
+// =====================================================
+// WISHLIST ROUTES
+// =====================================================
+Route::get('/wishlist', [\App\Http\Controllers\WishlistController::class, 'index']);
+Route::post('/wishlist/add', [\App\Http\Controllers\WishlistController::class, 'store']);
+Route::post('/wishlist/hapus/{id}', [\App\Http\Controllers\WishlistController::class, 'destroy']);
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -59,35 +66,13 @@ Route::get('/about', function () {
 });
 
 // buat melihat Detail produk 
-Route::get('/detail', function () {
-    return view('detail');
-});
+Route::get('/detail/{id}', [App\Http\Controllers\ProdukController::class, 'show']);
 
 // buat ke page Makanan kucing
-Route::get('/makanan-kucing', function () {
-    return view('makanan_kucing');
-});
-
-Route::get('/makanan-kucing2', function () {
-    return view('makanan_kucing2');
-});
-
-Route::get('/makanan-kucing3', function () {
-    return view('makanan_kucing3');
-});
+Route::get('/makanan-kucing', [App\Http\Controllers\ProdukController::class, 'kategori'])->defaults('nama_kategori', 'makanan-kucing');
 
 // buat ke page Makanan Anjing
-Route::get('/makanan-anjing', function () {
-    return view('makanan_anjing'); 
-});
-
-Route::get('/makanan-anjing2', function () {
-    return view('makanan_anjing2'); 
-});
-
-Route::get('/makanan-anjing3', function () {
-    return view('makanan_anjing3'); 
-});
+Route::get('/makanan-anjing', [App\Http\Controllers\ProdukController::class, 'kategori'])->defaults('nama_kategori', 'makanan-anjing');
 
 Route::delete('/admin/produk/{id}', [AdminProdukController::class, 'destroy']);
 Route::get('/admin/produk/{id}/edit', [AdminProdukController::class, 'edit']);

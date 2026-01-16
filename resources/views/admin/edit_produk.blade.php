@@ -84,10 +84,13 @@
                 </select>
 
                 <label>Harga (Rp)</label>
-                <input type="number" name="harga" value="{{ $produk->harga_produk }}" required>
+                <input type="number" name="harga_produk" value="{{ $produk->harga_produk }}" required>
 
                 <label>Stok</label>
                 <input type="number" name="stok" value="{{ $produk->stok }}" required>
+
+                <label>URL Gambar</label>
+                <input type="text" name="gambar" value="{{ $produk->gambar }}">
 
                 <button type="submit" class="btn-save">UPDATE</button>
             </form>

@@ -149,6 +149,11 @@
                         <input type="number" name="stok" required>
                     </div>
 
+                    <div class="form-group">
+                        <label>URL Gambar (Contoh: /images/Pedigree.png)</label>
+                        <input type="text" name="gambar">
+                    </div>
+
                     <button type="submit">SAVE</button>
 
                     <a href="/" class="back-btn">Log out</a>
@@ -165,6 +170,7 @@
                 <th>Kategori</th>
                 <th>Harga</th>
                 <th>Stok</th>
+                <th>Gambar</th>
                 <th>⚙️</th>
             </tr>
 
@@ -175,6 +181,13 @@
                     <td>{{ $p->kategori }}</td>
                     <td>{{ $p->harga_produk }}</td>
                     <td>{{ $p->stok }}</td>
+                    <td>
+                        @if($p->gambar)
+                            <img src="{{ $p->gambar }}" alt="IMG" style="width: 40px; height: 40px; object-fit: cover;">
+                        @else
+                            -
+                        @endif
+                    </td>
                     <td>
                         <a href="/admin/produk/{{ $p->id_produk }}/edit" class="btn btn-warning btn-sm">
                             Edit

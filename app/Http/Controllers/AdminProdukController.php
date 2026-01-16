@@ -15,14 +15,29 @@ class AdminProdukController extends Controller
 
     public function store(Request $request)
     {
-        Produk::create($request->all());
-        return redirect()->back();
+        $request->validate([
+            'nama_produk' => 'required',
+            'kategori' => 'required',
+            'harga_produk' => 'required|numeric',
+            'stok' => 'required|numeric',
+            'gambar' => 'nullable'
+        ]);
+
+        Produk::create([
+            'nama_produk' => $request->nama_produk,
+            'kategori' => $request->kategori,
+            'harga_produk' => $request->harga_produk,
+            'stok' => $request->stok,
+            'gambar' => $request->gambar,
+        ]);
+
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
     }
 
     public function destroy($id) //delete
     {
         Produk::where('id_produk', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Produk berhasil dihapus');
     }
 
     public function edit($id) //edit 
@@ -33,14 +48,23 @@ class AdminProdukController extends Controller
 
     public function update(Request $request, $id) //simpan perubahan produk
     {
+        $request->validate([
+            'nama_produk' => 'required',
+            'kategori' => 'required',
+            'harga_produk' => 'required|numeric',
+            'stok' => 'required|numeric',
+            'gambar' => 'nullable'
+        ]);
+
         Produk::where('id_produk', $id)->update([
             'nama_produk' => $request->nama_produk,
             'kategori' => $request->kategori,
-            'harga_produk' => $request->harga,
+            'harga_produk' => $request->harga_produk,
             'stok' => $request->stok,
+            'gambar' => $request->gambar,
         ]);
 
-        return redirect('/admin/produk');
+        return redirect('/admin/produk')->with('success', 'Produk berhasil diperbarui');
     }
 
 

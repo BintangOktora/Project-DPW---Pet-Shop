@@ -148,6 +148,7 @@
                         <a href="/register" class="btn btn-sm btn-outline-light">Register</a>
                     @endif
                     <a href="#" class="text-white ms-3 fs-5"><i class="bi bi-search"></i></a>
+                    <a href="/wishlist" class="text-white ms-3 fs-5"><i class="bi bi-heart"></i></a>
                     <a href="/keranjang" class="text-white ms-3 fs-5"><i class="bi bi-bag"></i></a>
                 </div>
 
@@ -168,119 +169,83 @@
                 
                 <div class="d-flex align-items-center">
                     <span class="me-2 text-muted d-none d-md-block">Urutkan:</span>
-                    <select class="form-select form-select-sm" style="width: 150px; border-color: #e4710cff;">
-                        <option selected>Terpopuler</option>
-                        <option value="1">Harga Terendah</option>
-                        <option value="2">Harga Tertinggi</option>
-                        <option value="3">Terbaru</option>
+                    <select class="form-select form-select-sm" style="width: 150px; border-color: #e4710cff;" onchange="location = this.value;">
+                        <option value="?sort=terpopuler" {{ $sort == 'terpopuler' ? 'selected' : '' }}>Terpopuler</option>
+                        <option value="?sort=harga-rendah" {{ $sort == 'harga-rendah' ? 'selected' : '' }}>Harga Terendah</option>
+                        <option value="?sort=harga-tinggi" {{ $sort == 'harga-tinggi' ? 'selected' : '' }}>Harga Tertinggi</option>
+                        <option value="?sort=terbaru" {{ $sort == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
                     </select>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="container mt-4">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    </div>
+
     <div class="container mb-5">
         <div class="row">
-            
+            @foreach($produk as $item)
             <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <span class="badge-discount">10% OFF</span>
-                    <img src="/images/whiskas.png" class="card-img-top" alt="Whiskas">
+                    @if($item->stok < 5)
+                        <span class="badge-discount">STOK TERBATAS</span>
+                    @endif
+                    <img src="{{ $item->gambar ?: '/images/whiskas.png' }}" class="card-img-top" alt="{{ $item->nama_produk }}">
                     <div class="card-body">
-                        <h5 class="card-title">Whiskas Ocean Fish Canned 400gr</h5>
-                        <p class="card-price">Rp 26.500 <s class="text-muted small fw-normal">Rp 30.000</s></p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
+                        <h5 class="card-title">{{ $item->nama_produk }}</h5>
+                        <p class="card-price">Rp {{ number_format($item->harga_produk, 0, ',', '.') }}</p>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="/detail/{{ $item->id_produk }}" class="btn btn-detail">Detail</a>
+                            
+                            <div class="d-flex gap-1">
+                                <form action="/keranjang/add" method="POST" class="flex-grow-1">
+                                    @csrf
+                                    <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                    <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                    <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                    <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                    <input type="hidden" name="jumlah" value="1">
+                                    <button type="submit" class="btn btn-sm btn-outline-primary w-100">
+                                        <i class="bi bi-cart-plus"></i>
+                                    </button>
+                                </form>
+
+                                <form action="/wishlist/add" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                    <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                    <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                    <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <img src="/images/RoyalCanin.png" class="card-img-top" alt="Royal Canin"> <div class="card-body">
-                        <h5 class="card-title">Royal Canin Kitten 2KG Dry Food</h5>
-                        <p class="card-price">Rp 210.000</p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <img src="/images/Me-o.png" class="card-img-top" alt="Me-O">
-                    <div class="card-body">
-                        <h5 class="card-title">Me-O Creamy Treats Salmon 1 Pack (4pcs)</h5>
-                        <p class="card-price">Rp 18.000</p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <img src="/images/Friskies.png" class="card-img-top" alt="Friskies">
-                    <div class="card-body">
-                        <h5 class="card-title">Friskies Seafood Sensations 1.2KG</h5>
-                        <p class="card-price">Rp 65.000</p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <span class="badge-discount">PROMO</span>
-                    <img src="/images/bolt.png" class="card-img-top" alt="Bolt">
-                    <div class="card-body">
-                        <h5 class="card-title">Bolt Tuna Cat Food 1KG (Donut Shape)</h5>
-                        <p class="card-price">Rp 22.000</p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <img src="/images/pearl.png" class="card-img-top" alt="Vitamin">
-                    <div class="card-body">
-                        <h5 class="card-title">Pearl Nutro Multivitamin Gel Kucing</h5>
-                        <p class="card-price">Rp 120.000</p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <img src="/images/Pasir.png" class="card-img-top" alt="Pasir Kucing">
-                    <div class="card-body">
-                        <h5 class="card-title">Pasir Kucing Gumpal Wangi Lavender 5L</h5>
-                        <p class="card-price">Rp 35.000</p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <img src="/images/BakPasir.png" class="card-img-top" alt="Toilet Kucing">
-                    <div class="card-body">
-                        <h5 class="card-title">Bak Pasir Kucing Jumbo + Sekop</h5>
-                        <p class="card-price">Rp 55.000</p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
 
- <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link">Previous</a></li>
-            <li class="page-item active"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing2">2</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing3">3</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing2">Next</a></li>
-        </ul>
+        <div class="d-flex justify-content-center">
+            {{ $produk->links() }}
+        </div>
     </div>
     </div>
 
