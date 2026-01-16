@@ -243,14 +243,8 @@
             @endforeach
         </div>
 
- <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link">Previous</a></li>
-            <li class="page-item active"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing2">2</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing3">3</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing2">Next</a></li>
-        </ul>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $produk->links() }}
     </div>
     </div>
 

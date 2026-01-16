@@ -189,72 +189,28 @@
 <!-- PRODUK -->
 <div class="container mb-5">
     <div class="row">
-
-        <!-- DISKON 1 -->
+        @foreach($produk as $item)
         <div class="col-6 col-md-4 col-lg-3 mb-4">
             <div class="card card-product shadow-sm position-relative">
-                <span class="badge-discount">30% OFF</span>
-                <img src="/images/Pedigree.png" class="card-img-top">
+                @if($item->stok < 5)
+                    <span class="badge-discount">STOK TERBATAS</span>
+                @endif
+                <img src="{{ $item->gambar ?: '/images/Pedigree.png' }}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">Pedigree Adult Beef 1.5KG</h5>
+                    <h5 class="card-title">{{ $item->nama_produk }}</h5>
                     <p class="card-price">
-                        Rp 68.000 <span class="old-price">Rp 97.000</span>
+                        Rp {{ number_format($item->harga_produk, 0, ',', '.') }}
                     </p>
-                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
+                    <a href="/detail/{{ $item->id_produk }}" class="btn btn-detail">Detail</a>
                 </div>
             </div>
         </div>
-
-        <!-- DISKON 2 -->
-        <div class="col-6 col-md-4 col-lg-3 mb-4">
-            <div class="card card-product shadow-sm position-relative">
-                <span class="badge-discount">15% OFF</span>
-                <img src="/images/RoyalMaxi.png" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Royal Canin Maxi Adult 4KG</h5>
-                    <p class="card-price">
-                        Rp 420.000 <span class="old-price">Rp 495.000</span>
-                    </p>
-                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- NORMAL -->
-        <div class="col-6 col-md-4 col-lg-3 mb-4">
-            <div class="card card-product shadow-sm">
-                <img src="/images/BoltDog.png" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Bolt Dog Food Lamb 1KG</h5>
-                    <p class="card-price">Rp 22.000</p>
-                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- NORMAL -->
-        <div class="col-6 col-md-4 col-lg-3 mb-4">
-            <div class="card card-product shadow-sm">
-                <img src="/images/Purina.png" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Purina Pro Plan Puppy 2.5KG</h5>
-                    <p class="card-price">Rp 185.000</p>
-                    <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                </div>
-            </div>
-        </div>
-
+        @endforeach
     </div>
 
     <!-- PAGINATION -->
-    <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link">Previous</a></li>
-            <li class="page-item active"><a class="page-link">1</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-anjing2">2</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-anjing3">3</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-anjing2">Next</a></li>
-        </ul>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $produk->links() }}
     </div>
 </div>
 
