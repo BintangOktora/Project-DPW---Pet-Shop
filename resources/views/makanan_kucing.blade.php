@@ -169,11 +169,11 @@
                 
                 <div class="d-flex align-items-center">
                     <span class="me-2 text-muted d-none d-md-block">Urutkan:</span>
-                    <select class="form-select form-select-sm" style="width: 150px; border-color: #e4710cff;" onchange="location = this.value;">
-                        <option value="?sort=terpopuler" {{ $sort == 'terpopuler' ? 'selected' : '' }}>Terpopuler</option>
-                        <option value="?sort=harga-rendah" {{ $sort == 'harga-rendah' ? 'selected' : '' }}>Harga Terendah</option>
-                        <option value="?sort=harga-tinggi" {{ $sort == 'harga-tinggi' ? 'selected' : '' }}>Harga Tertinggi</option>
-                        <option value="?sort=terbaru" {{ $sort == 'terbaru' ? 'selected' : '' }}>Terbaru</option>
+                    <select class="form-select form-select-sm" style="width: 150px; border-color: #e4710cff;">
+                        <option selected>Terpopuler</option>
+                        <option value="1">Harga Terendah</option>
+                        <option value="2">Harga Tertinggi</option>
+                        <option value="3">Terbaru</option>
                     </select>
                 </div>
             </div>
@@ -243,9 +243,14 @@
             @endforeach
         </div>
 
-        <div class="d-flex justify-content-center">
-            {{ $produk->links() }}
-        </div>
+ <div class="d-flex justify-content-center">
+        <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link">Previous</a></li>
+            <li class="page-item active"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link" href="/makanan-kucing2">2</a></li>
+            <li class="page-item"><a class="page-link" href="/makanan-kucing3">3</a></li>
+            <li class="page-item"><a class="page-link" href="/makanan-kucing2">Next</a></li>
+        </ul>
     </div>
     </div>
 

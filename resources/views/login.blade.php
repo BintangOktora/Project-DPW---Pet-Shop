@@ -7,7 +7,7 @@
     <title>Login - Pet Shop</title>
 
     <style>
-        /* --- Reset & Global Styles (Sama dengan Register) --- */
+        /* --- Reset & Global Styles --- */
         * {
             box-sizing: border-box;
         }
@@ -20,15 +20,16 @@
             color: #333;
         }
 
-        /* --- Header Navigation (Sama dengan Register) --- */
+        /* --- Header Navigation --- */
         .main-header {
-            background-color: #e67e22; /* Warna Oranye Pet Shop */
+            background-color: #e67e22;
+            /* Warna Oranye Pet Shop */
             color: white;
             padding: 15px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .header-logo {
@@ -46,18 +47,21 @@
         }
 
         @media (max-width: 768px) {
-             .header-nav { display: none; }
+            .header-nav {
+                display: none;
+            }
         }
 
         /* --- Form Container --- */
         .container {
             width: 100%;
-            max-width: 400px; 
+            max-width: 400px;
             margin: 80px auto;
             background: white;
             padding: 35px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
         }
 
         h2 {
@@ -94,7 +98,7 @@
         button[type="submit"] {
             width: 100%;
             padding: 12px;
-            background: #e67e22; 
+            background: #e67e22;
             color: white;
             border: none;
             border-radius: 6px;
@@ -125,7 +129,7 @@
             color: #e67e22;
             font-weight: bold;
         }
-        
+
         .register-link:hover {
             text-decoration: underline;
         }
@@ -136,7 +140,7 @@
             color: #7f8c8d;
             font-size: 13px;
         }
-        
+
         .back-link:hover {
             color: #333;
         }
@@ -153,20 +157,15 @@
             font-size: 14px;
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <header class="main-header">
-        <div class="header-logo">PET SHOP</div>
-        <nav class="header-nav">
-            <a href="/">HOME</a>
-            <a href="makanan-kucing">MAKANAN KUCING</a>
-            <a href="makanan-anjing">MAKANAN ANJING</a>
-        </nav>
-    </header>
-
     <div class="container">
+        <a href="/" class="text-secondary"
+            style="position: absolute; top: 15px; left: 15px; text-decoration: none; font-size: 1.2rem;">
+            <i class="bi bi-x-lg"></i>
+        </a>
         <h2>Login Member</h2>
 
         {{-- ERROR ALERT --}}
@@ -180,13 +179,20 @@
             @csrf
 
             <div>
-                <label for="username">Nama User / Username</label>
-                <input type="text" id="username" name="username" placeholder="Masukkan username anda" required>
+                <label for="username">Nama / Username</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan username" required>
             </div>
 
             <div>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                <div style="position: relative;">
+                    <input type="password" id="password" name="password" placeholder="Password" required
+                        style="padding-right: 40px;">
+                    <span onclick="togglePasswordVisibility()"
+                        style="position: absolute; right: 12px; top: 38%; transform: translateY(-50%); cursor: pointer; color: #6D7588;">
+                        <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                    </span>
+                </div>
             </div>
 
             <button type="submit">Masuk</button>
@@ -194,12 +200,27 @@
             <div class="form-footer">
                 <span>Belum punya akun? </span>
                 <a href="/register" class="register-link">Daftar sekarang</a>
-                <br>
-                <a href="/" class="back-link">← Kembali ke Beranda</a>
             </div>
 
         </form>
     </div>
 
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('togglePasswordIcon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('bi-eye');
+                toggleIcon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('bi-eye-slash');
+                toggleIcon.classList.add('bi-eye');
+            }
+        }
+    </script>
 </body>
+
 </html>

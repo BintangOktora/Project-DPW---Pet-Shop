@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Keranjang;
+use App\Models\Checkout;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -65,5 +67,24 @@ class ProfileController extends Controller
         ]);
 
         return back()->with('success', 'Password berhasil diubah');
+    }
+    public function destroy(Request $request)
+    {
+        if (!session('user_login')) {
+            return redirect('/login')->with('error', 'Silakan login terlebih dahulu');
+        }
+
+        $user = User::findOrFail(session('user_id'));
+
+        // Delete related data first
+        Keranjang::where('id_user', $user->id_user)->delete();
+        Checkout::where('id_user', $user->id_user)->delete();
+
+        $user->delete();
+
+        // Clear all session data
+        session()->flush();
+
+        return redirect('/')->with('success', 'Akun Anda telah berhasil dihapus.');
     }
 }

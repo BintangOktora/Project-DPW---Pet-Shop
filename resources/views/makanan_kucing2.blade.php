@@ -11,12 +11,14 @@
     <style>
         /* --- Tema Global --- */
         body {
-            background-color: #f5f6f7; /* Abu-abu sangat terang */
+            background-color: #f5f6f7;
+            /* Abu-abu sangat terang */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .custom-navbar {
-            background-color: #e4710cff; /* Oranye Petshop */
+            background-color: #e4710cff;
+            /* Oranye Petshop */
         }
 
         /* --- Header Kategori --- */
@@ -24,13 +26,14 @@
             background: white;
             padding: 20px 0;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .breadcrumb a {
             text-decoration: none;
             color: #6c757d;
         }
+
         .breadcrumb a:hover {
             color: #e4710cff;
         }
@@ -47,12 +50,13 @@
 
         .card-product:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .card-img-top {
             height: 200px;
-            object-fit: contain; /* Agar gambar tidak terpotong */
+            object-fit: contain;
+            /* Agar gambar tidak terpotong */
             padding: 20px;
             background-color: #fff;
         }
@@ -72,11 +76,12 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            height: 48px; 
+            height: 48px;
         }
 
         .card-price {
-            color: #dc3545; /* Merah untuk harga */
+            color: #dc3545;
+            /* Merah untuk harga */
             font-weight: bold;
             font-size: 1.1rem;
             margin-bottom: 15px;
@@ -138,7 +143,7 @@
 
                 <div class="d-flex align-items-center text-white">
                     @if(session('user_login'))
-                       <span class="me-3 d-none d-lg-block">Hi, {{ session('user_nama') }}</span>
+                        <span class="me-3 d-none d-lg-block">Hi, {{ session('user_nama') }}</span>
                     @endif
                     <a href="#" class="text-white me-3 fs-5"><i class="bi bi-search"></i></a>
                     <a href="#" class="text-white me-3 fs-5"><i class="bi bi-heart"></i></a>
@@ -158,40 +163,19 @@
             </nav>
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="fw-bold m-0" style="color: #333;">Katalog Makanan Kucing</h2>
-                
-                <div class="d-flex align-items-center">
-                    <span class="me-2 text-muted d-none d-md-block">Urutkan:</span>
-                    <select class="form-select form-select-sm" style="width: 150px; border-color: #e4710cff;">
-                        <option selected>Terpopuler</option>
-                        <option value="1">Harga Terendah</option>
-                        <option value="2">Harga Tertinggi</option>
-                        <option value="3">Terbaru</option>
-                    </select>
-                </div>
             </div>
         </div>
     </div>
 
     <div class="container mb-5">
         <div class="row">
-            
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    <span class="badge-discount">10% OFF</span>
-                    <img src="/images/whiskas.png" class="card-img-top" alt="Whiskas">
-                    <div class="card-body">
-                        <h5 class="card-title">Whiskas Ocean Fish Canned 400gr</h5>
-                        <p class="card-price">Rp 26.500 <s class="text-muted small fw-normal">Rp 30.000</s></p>
-                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
 
             <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <img src="/images/RoyalCanin.png" class="card-img-top" alt="Royal Canin"> <div class="card-body">
-                        <h5 class="card-title">Royal Canin Kitten 2KG Dry Food</h5>
-                        <p class="card-price">Rp 210.000</p>
+                    <img src="/images/Supercat Baby Kitten 95gr.jpeg" class="card-img-top" alt="Whiskas">
+                    <div class="card-body">
+                        <h5 class="card-title">Supercat Baby Kitten 95gr</h5>
+                        <p class="card-price">Rp 10.500 <s class="text-muted small fw-normal">Rp 13.000</s></p>
                         <a href="/detail" class="btn btn-detail">Lihat Detail</a>
                     </div>
                 </div>
@@ -199,10 +183,11 @@
 
             <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <img src="/images/Me-o.png" class="card-img-top" alt="Me-O">
+                    <img src="/images/50pcs Cemilan Kucing Kitten Snack Kucing.jpeg" class="card-img-top"
+                        alt="50pcs Cemilan Kucing Kitten Snack Kucing">
                     <div class="card-body">
-                        <h5 class="card-title">Me-O Creamy Treats Salmon 1 Pack (4pcs)</h5>
-                        <p class="card-price">Rp 18.000</p>
+                        <h5 class="card-title">50pcs Cemilan Kucing Kitten Snack Kucing</h5>
+                        <p class="card-price">Rp 51.000</p>
                         <a href="/detail" class="btn btn-detail">Lihat Detail</a>
                     </div>
                 </div>
@@ -210,10 +195,10 @@
 
             <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <img src="/images/Friskies.png" class="card-img-top" alt="Friskies">
+                    <img src="/images/baju kucing.jpeg" class="card-img-top" alt="Me-O">
                     <div class="card-body">
-                        <h5 class="card-title">Friskies Seafood Sensations 1.2KG</h5>
-                        <p class="card-price">Rp 65.000</p>
+                        <h5 class="card-title">Baju Kucing Lucu Tema GoCat Outfit Anabul Parodi Driver Gokil</h5>
+                        <p class="card-price">Rp 11.000</p>
                         <a href="/detail" class="btn btn-detail">Lihat Detail</a>
                     </div>
                 </div>
@@ -221,11 +206,10 @@
 
             <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <span class="badge-discount">PROMO</span>
-                    <img src="/images/bolt.png" class="card-img-top" alt="Bolt">
+                    <img src="/images/pohon cakaran.jpeg" class="card-img-top" alt="Friskies">
                     <div class="card-body">
-                        <h5 class="card-title">Bolt Tuna Cat Food 1KG (Donut Shape)</h5>
-                        <p class="card-price">Rp 22.000</p>
+                        <h5 class="card-title">Pohon Cakaran Garukan Kucing Stratcher Tree</h5>
+                        <p class="card-price">Rp 53.391</p>
                         <a href="/detail" class="btn btn-detail">Lihat Detail</a>
                     </div>
                 </div>
@@ -233,32 +217,44 @@
 
             <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <img src="/images/pearl.png" class="card-img-top" alt="Vitamin">
+                    <span class="badge-discount">50% OFF</span>
+                    <img src="/images/cat toy.jpeg" class="card-img-top" alt="Bolt">
                     <div class="card-body">
-                        <h5 class="card-title">Pearl Nutro Multivitamin Gel Kucing</h5>
-                        <p class="card-price">Rp 120.000</p>
+                        <h5 class="card-title">Interactive Cat Toy Chase Run Exercise Mental Stimulation</h5>
+                        <p class="card-price">Rp 1.698.500 <s class="text-muted small fw-normal">Rp 3.397.000</s></p></p>
                         <a href="/detail" class="btn btn-detail">Lihat Detail</a>
                     </div>
                 </div>
             </div>
 
-             <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <img src="/images/Pasir.png" class="card-img-top" alt="Pasir Kucing">
+                    <img src="/images/olive care.jpeg" class="card-img-top" alt="Vitamin">
                     <div class="card-body">
-                        <h5 class="card-title">Pasir Kucing Gumpal Wangi Lavender 5L</h5>
-                        <p class="card-price">Rp 35.000</p>
+                        <h5 class="card-title">Olive Care Kucing</h5>
+                        <p class="card-price">Rp 42.800</p>
                         <a href="/detail" class="btn btn-detail">Lihat Detail</a>
                     </div>
                 </div>
             </div>
 
-             <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
                 <div class="card card-product shadow-sm">
-                    <img src="/images/BakPasir.png" class="card-img-top" alt="Toilet Kucing">
+                    <img src="/images/pet bathtub.jpeg" class="card-img-top" alt="Pasir Kucing">
                     <div class="card-body">
-                        <h5 class="card-title">Bak Pasir Kucing Jumbo + Sekop</h5>
-                        <p class="card-price">Rp 55.000</p>
+                        <h5 class="card-title">TEMPAT MANDI ANJING KUCING | PET BATHTUB</h5>
+                        <p class="card-price">Rp 209.000</p>
+                        <a href="/detail" class="btn btn-detail">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card card-product shadow-sm">
+                    <img src="/images/litter box.jpeg" class="card-img-top" alt="Toilet Kucing">
+                    <div class="card-body">
+                        <h5 class="card-title">Focat TP Litter Box Kucing</h5>
+                        <p class="card-price">Rp 40.500</p>
                         <a href="/detail" class="btn btn-detail">Lihat Detail</a>
                     </div>
                 </div>
@@ -266,15 +262,13 @@
 
         </div>
 
- <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="/makanan-kucing">Previous</a></li>
-            <<li class="page-item"><a class="page-link" href="/makanan-kucing">1</a></li>
-<li class="page-item active"><a class="page-link">2</a></li>
-<li class="page-item"><a class="page-link" href="/makanan-kucing3">3</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-kucing2">Next</a></li>
-        </ul>
-    </div>
+        <div class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="/makanan-kucing">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="/makanan-kucing">1</a></li>
+                <li class="page-item active"><a class="page-link">2</a></li>
+            </ul>
+        </div>
     </div>
 
     <footer class="text-center py-4 bg-light mt-5">
@@ -283,4 +277,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      *
      * GENERATED AUTOMATICALLY BY: php artisan db:sync-seeder
-     * DATE: 2026-01-14 07:23:01
+     * DATE: 2026-01-15 14:05:11
      */
     public function run(): void
     {
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
     'nama_user' => 'YARSI66',
     'no_hp' => '0214206674',
     'email' => 'yarsi@gmail.com',
-    'password' => '$2y$12$nKpvuFq518LYs76IPGm7Zu0BQYCuCVMm8mpGINypNfsOmCY5Feas.',
+    'password' => '$2y$12$uu.ivpNq0Sp11LYJt6BRiuasx0OurbIE70fDZpPMGRE7E.d5qRAb2',
   ],
 [
     'nama_user' => 'YARSI2',
@@ -73,6 +73,12 @@ class DatabaseSeeder extends Seeder
     'no_hp' => '0333333333',
     'email' => 'arta1@gmail.com',
     'password' => '$2y$12$UAX5sbv2Z4j//xOeRgamiuCUVrOqq.svCUiqa9ugjuCpYjM9uYZwW',
+  ],
+[
+    'nama_user' => 'bintang',
+    'no_hp' => '081389432602',
+    'email' => 'trenzzzz1890@gmail.com',
+    'password' => '$2y$12$uwQjSMTOPuoX.Y340hZ4T.SNsmpJGNaxCfX3Ma6lkNesY2ClQ4X8a',
   ],
 ];
 

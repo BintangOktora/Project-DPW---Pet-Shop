@@ -59,6 +59,7 @@ Route::get('/logout', [UserLoginController::class, 'logout']);
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index']);
 Route::post('/profile/update', [App\Http\Controllers\ProfileController::class, 'update']);
 Route::post('/profile/password', [App\Http\Controllers\ProfileController::class, 'changePassword']);
+Route::post('/profile/delete', [App\Http\Controllers\ProfileController::class, 'destroy']);
 
 //buat ke page About Us 
 Route::get('/about', function () {
@@ -72,7 +73,17 @@ Route::get('/detail/{id}', [App\Http\Controllers\ProdukController::class, 'show'
 Route::get('/makanan-kucing', [App\Http\Controllers\ProdukController::class, 'kategori'])->defaults('nama_kategori', 'makanan-kucing');
 
 // buat ke page Makanan Anjing
-Route::get('/makanan-anjing', [App\Http\Controllers\ProdukController::class, 'kategori'])->defaults('nama_kategori', 'makanan-anjing');
+Route::get('/makanan-anjing', function () {
+    return view('makanan_anjing'); 
+});
+
+Route::get('/makanan-anjing2', function () {
+    return view('makanan_anjing2'); 
+});
+
+Route::get('/makanan-anjing3', function () {
+    return view('makanan_anjing3'); 
+});
 
 Route::delete('/admin/produk/{id}', [AdminProdukController::class, 'destroy']);
 Route::get('/admin/produk/{id}/edit', [AdminProdukController::class, 'edit']);

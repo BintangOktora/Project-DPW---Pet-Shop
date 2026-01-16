@@ -165,18 +165,11 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="fw-bold m-0">Katalog Makanan Anjing</h2>
-
-            <select class="form-select form-select-sm" style="width:150px; border-color:#e4710cff;">
-                <option selected>Terpopuler</option>
-                <option>Harga Terendah</option>
-                <option>Harga Tertinggi</option>
-                <option>Terbaru</option>
-            </select>
         </div>
     </div>
 </div>
 
-<!-- PRODUK -->
+<!-- container card PRODUK -->
 <div class="container mb-5">
     <div class="row">
 
@@ -243,7 +236,7 @@
             <li class="page-item"><a class="page-link" href="/makanan-anjing">1</a></li>
 <li class="page-item active"><a class="page-link">2</a></li>
 <li class="page-item"><a class="page-link" href="/makanan-anjing3">3</a></li>
-            <li class="page-item"><a class="page-link" href="/makanan-anjing2">Next</a></li>
+            <li class="page-item"><a class="page-link" href="/makanan-anjing3">Next</a></li>
         </ul>
     </div>
 </div>
