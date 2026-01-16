@@ -14,9 +14,8 @@
         }
 
         .jumbotron {
-            /* CATATAN LARAVEL: 
+            /* note: 
                Pastikan gambar ada di folder 'public/images/kucing.jpg'.
-               Browser tidak bisa mengakses folder '/resources' secara langsung.
             */
             background-image: url('/images/kucing.jpg');
             /* Ganti baris di atas dengan: url('/images/kucing.jpg'); jika file sudah ada di folder public */
@@ -32,7 +31,7 @@
             position: relative;
         }
 
-        /* overlay agar tulisan terbaca */
+        /* overlay buat tulisan terbaca*/
         .jumbotron::before {
             content: "";
             position: absolute;
@@ -51,7 +50,7 @@
             font-size: 3rem;
         }
         
-        /* Tambahan agar gambar card rapi */
+        /* untuk gambar card rapi */
         .card-img-top {
             height: 200px;
             object-fit: cover;

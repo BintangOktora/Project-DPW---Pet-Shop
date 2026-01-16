@@ -19,7 +19,7 @@
             background-color: #e4710cff;
         }
 
-        /* --- Styles Detail Produk (Sama seperti sebelumnya) --- */
+        /* --- Styles Detail Produk  --- */
         .main-product-img {
             max-width: 100%;
             height: auto;
@@ -73,7 +73,7 @@
             color: white;
         }
 
-        /* --- STYLE REVIEW BARU --- */
+        /* --- css style komentar--- */
         .review-section-title {
             text-align: center;
             font-weight: bold;
@@ -82,7 +82,7 @@
             font-size: 1.5rem;
         }
 
-        /* Container Form Review */
+        /* Container Form komentar */
         .review-form-box {
             background-color: #f8f9fa;
             border: 1px solid #ddd;
@@ -277,9 +277,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // =====================================================
-        // REVIEW SYSTEM 
-        // =====================================================
+   
         document.getElementById('formReview').addEventListener('submit', function (e) {
             e.preventDefault();
 

@@ -216,7 +216,7 @@
 
     <div class="container my-5">
         <div class="wishlist-container">
-            
+
             <!-- Flash Messages -->
             @if(session('success'))
                 <div class="alert alert-success mb-4">
@@ -247,8 +247,9 @@
                 @else
                     @foreach($items as $item)
                         <div class="wishlist-item">
-                            <img src="{{ $item->gambar_produk ?: '/images/whiskas.png' }}" alt="{{ $item->nama_produk }}" class="wishlist-item-img">
-                            
+                            <img src="{{ $item->gambar_produk ?: '/images/whiskas.png' }}" alt="{{ $item->nama_produk }}"
+                                class="wishlist-item-img">
+
                             <div class="wishlist-item-details">
                                 <div class="wishlist-item-name">{{ $item->nama_produk }}</div>
                                 <div class="wishlist-item-price">Rp {{ number_format($item->harga, 0, ',', '.') }}</div>
@@ -270,7 +271,8 @@
                             <!-- Delete Button -->
                             <form action="/wishlist/hapus/{{ $item->id_wishlist }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn-delete" onclick="return confirm('Hapus produk ini dari wishlist?')">
+                                <button type="submit" class="btn-delete"
+                                    onclick="return confirm('Hapus produk ini dari wishlist?')">
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </form>
