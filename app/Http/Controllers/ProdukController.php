@@ -34,14 +34,14 @@ class ProdukController extends Controller
         return redirect('/produk')->with('success', 'Produk berhasil ditambahkan');
     }
 
-    // form edit
+    // form edit produk
     public function edit($id)
     {
         $produk = Produk::findOrFail($id);
         return view('produk.edit', compact('produk'));
     }
 
-    // update produk
+    // update produk 
     public function update(Request $request, $id)
     {
         $produk = Produk::findOrFail($id);

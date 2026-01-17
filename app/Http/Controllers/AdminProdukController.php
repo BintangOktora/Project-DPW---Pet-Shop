@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; //controller untuk mode admin mengatur produk (CRUD admin)
 
 use App\Models\Produk;
 use Illuminate\Http\Request;

@@ -8,12 +8,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // ambil produk terbaru (misalnya 6)
+        // ambil produk terbaru (misalnya 6 produk)
         $produk = Produk::latest()->take(6)->get();
 
         return view('home', compact('produk'));
 
-        //paksa login
+        //menyuruh user untuk melakukan login dahulu
         if (!session('user_login')) {
             return redirect('/login');
         }

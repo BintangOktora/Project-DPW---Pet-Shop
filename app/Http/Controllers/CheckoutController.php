@@ -7,7 +7,7 @@ use App\Models\Checkout;
 
 class CheckoutController extends Controller
 {
-    // tampil keranjang user
+    // menampil keranjang user
     public function index()
     {
         $checkout = Checkout::all();

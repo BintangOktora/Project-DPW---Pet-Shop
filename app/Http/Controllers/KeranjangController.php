@@ -14,7 +14,7 @@ class KeranjangController extends Controller
      */
     public function index()
     {
-        // Cek apakah user sudah login
+        // Cek user sudah login
         if (!session('user_login')) {
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu');
         }
@@ -38,7 +38,7 @@ class KeranjangController extends Controller
      */
     public function store(Request $request)
     {
-        // Cek apakah user sudah login
+        // Cek user sudah login
         if (!session('user_login')) {
             return redirect('/login')->with('error', 'Silakan login terlebih dahulu untuk menambahkan ke keranjang');
         }
@@ -183,7 +183,7 @@ class KeranjangController extends Controller
             }
         }
 
-        // Jika semua stok aman, lakukan transaksi
+        // Jika semua stok tersedia, akan melakukan transaksi
         foreach ($items as $item) {
             $total = $item->harga * $item->jumlah;
             $totalAll += $total;
@@ -197,13 +197,13 @@ class KeranjangController extends Controller
                 'tgl_transaksi' => $today
             ]);
 
-            // Kurangi stok produk
+            // mengurangi stok produk
             $produk = \App\Models\Produk::find($item->id_produk);
             $produk->stok -= $item->jumlah;
             $produk->save();
         }
 
-        // Hapus semua item dari keranjang setelah checkout
+        // untuk hapus semua item dari keranjang setelah checkout
         Keranjang::where('id_user', $userId)->delete();
 
         return redirect('/')->with('success', 'Checkout berhasil! Stok produk telah diperbarui. Total pembayaran: Rp ' . number_format($totalAll, 0, ',', '.'));
