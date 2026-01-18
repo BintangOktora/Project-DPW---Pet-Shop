@@ -175,7 +175,7 @@
             </div>
 
             <p class="text-muted mt-4 mb-0">
-                Belanja kebutuhan anabul kini lebih mudah, hemat, dan menyenangkan hanya di kami.
+                Belanja kebutuhan anabul kini lebih mudah, hemat, dan menyenangkan hanya ada di toko kami.
             </p>
         </div>
 
