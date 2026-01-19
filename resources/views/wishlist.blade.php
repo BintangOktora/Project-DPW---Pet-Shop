@@ -199,10 +199,9 @@
                 </ul>
                 <div class="d-flex align-items-center">
                     @if(session('user_login'))
-                        <a href="/wishlist" class="text-white ms-3 fs-5 me-3"><i class="bi bi-heart-fill"></i></a>
+                    <span class="navbar-text text-white me-3">
+                        Halo, {{ session('user_nama') }}
                         <a href="/keranjang" class="text-white ms-3 fs-5 me-3"><i class="bi bi-bag"></i></a>
-                        <span class="navbar-text text-white me-3">
-                            Halo, {{ session('user_nama') }}
                         </span>
                         <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
                     @else

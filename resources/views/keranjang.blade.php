@@ -56,7 +56,7 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Empty Cart */
+        /* style keranjang kosong */
         .cart-empty {
             text-align: center;
             padding: 60px 20px;
@@ -74,7 +74,7 @@
             margin-bottom: 10px;
         }
 
-        /* Cart Item */
+        /* item keranjang*/
         .cart-item {
             background: #f8f9fa;
             border-radius: 12px;
@@ -156,7 +156,7 @@
             color: #333;
         }
 
-        /* Delete Button */
+        /* tombol Delete */
         .btn-delete {
             background: #dc3545;
             border: none;
@@ -176,7 +176,7 @@
             transform: scale(1.05);
         }
 
-        /* Cart Summary */
+        /* detail keranjang */
         .cart-summary {
             background: #fff5ee;
             border-radius: 12px;
@@ -304,6 +304,7 @@
                 @if(session('user_login'))
                     <span class="navbar-text text-white me-3">
                         Halo, {{ session('user_nama') }}
+                        <a href="/wishlist" class="text-white ms-3 fs-5 me-3"><i class="bi bi-heart-fill"></i></a>
                     </span>
                     <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
                 @else
@@ -316,7 +317,7 @@
 
     <div class="container my-5">
         <div class="cart-container">
-            
+
             <!-- Flash Messages -->
             @if(session('success'))
                 <div class="alert alert-success mb-4">
@@ -330,7 +331,7 @@
                 </div>
             @endif
 
-            <!-- Cart Header -->
+            <!-- header keranjang -->
             <div class="cart-header">
                 <h2>
                     <i class="bi bi-cart3"></i>
@@ -339,10 +340,10 @@
                 <span class="cart-badge">{{ $count }} item</span>
             </div>
 
-            <!-- Cart Body -->
+            <!-- body keranjang -->
             <div class="cart-body">
                 @if($items->isEmpty())
-                    <!-- Empty Cart -->
+                    <!-- keranjang kosong -->
                     <div class="cart-empty">
                         <i class="bi bi-cart-x"></i>
                         <h4>Keranjang Kosong</h4>
@@ -352,11 +353,12 @@
                         </a>
                     </div>
                 @else
-                    <!-- Cart Items -->
+                    <!-- item keranjang -->
                     @foreach($items as $item)
                         <div class="cart-item">
-                            <img src="{{ $item->gambar_produk ?: '/images/whiskas.png' }}" alt="{{ $item->nama_produk }}" class="cart-item-img">
-                            
+                            <img src="{{ $item->gambar_produk ?: '/images/whiskas.png' }}" alt="{{ $item->nama_produk }}"
+                                class="cart-item-img">
+
                             <div class="cart-item-details">
                                 <div class="cart-item-name">{{ $item->nama_produk }}</div>
                                 <div class="cart-item-price">Rp {{ number_format($item->harga, 0, ',', '.') }}</div>
@@ -365,16 +367,18 @@
                                 </div>
                             </div>
 
-                            <!-- Quantity Controls -->
+                            <!-- jumlah barang -->
                             <div class="qty-control">
-                                <form action="/keranjang/kurang/{{ $item->id_keranjang }}" method="POST" style="display: inline;">
+                                <form action="/keranjang/kurang/{{ $item->id_keranjang }}" method="POST"
+                                    style="display: inline;">
                                     @csrf
                                     <button type="submit" class="qty-btn" {{ $item->jumlah <= 1 ? 'disabled' : '' }}>−</button>
                                 </form>
-                                
+
                                 <span class="qty-value">{{ $item->jumlah }}</span>
-                                
-                                <form action="/keranjang/tambah/{{ $item->id_keranjang }}" method="POST" style="display: inline;">
+
+                                <form action="/keranjang/tambah/{{ $item->id_keranjang }}" method="POST"
+                                    style="display: inline;">
                                     @csrf
                                     <button type="submit" class="qty-btn">+</button>
                                 </form>
@@ -383,14 +387,15 @@
                             <!-- Delete Button -->
                             <form action="/keranjang/hapus/{{ $item->id_keranjang }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn-delete" onclick="return confirm('Hapus produk ini dari keranjang?')">
+                                <button type="submit" class="btn-delete"
+                                    onclick="return confirm('Hapus produk ini dari keranjang?')">
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </form>
                         </div>
                     @endforeach
 
-                    <!-- Cart Summary -->
+                    <!-- detail keranjang -->
                     <div class="cart-summary">
                         <div class="cart-summary-row">
                             <span>Jumlah Item</span>
