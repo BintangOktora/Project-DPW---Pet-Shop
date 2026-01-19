@@ -14,12 +14,7 @@
         }
 
         .jumbotron {
-            /* note: 
-               Pastikan gambar ada di folder 'public/images/kucing.jpg'.
-            */
             background-image: url('/images/kucing.jpg');
-            /* Ganti baris di atas dengan: url('/images/kucing.jpg'); jika file sudah ada di folder public */
-
             background-size: cover;
             background-position: center;
             color: white;
@@ -59,6 +54,7 @@
 </head>
 
 <body>
+    <!-- navbar / header -->
     <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="/">PET SHOP</a>
@@ -83,6 +79,7 @@
                     </li>
                 </ul>
 
+                <!-- info user login -->
                 @if(session('user_login'))
                     <span class="navbar-text text-white me-3">
                         Halo, {{ session('user_nama') }}

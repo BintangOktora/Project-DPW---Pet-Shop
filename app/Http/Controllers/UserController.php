@@ -14,17 +14,21 @@ class UserController extends Controller
         return view('register');
     }
 
-    // untuk menyimpan user ke database
+    // Untuk menyimpan user ke database
     public function store(Request $request)
     {
-        // Validasi input dari form register
+        // Validasi ke database untuk input dari form register 
         $request->validate([
-            'nama_user' => 'required',
-            'no_hp' => 'required',
-            'email' => 'required|email'
+            'nama_user' => 'required|unique:user,nama_user',
+            'no_hp' => 'required|unique:user,no_hp',
+            'email' => 'required|email|unique:user,email'
+        ], [
+            'nama_user.unique' => 'Nama ini sudah digunakan, silakan pilih nama lain.',
+            'no_hp.unique' => 'Nomor HP ini sudah terdaftar.',
+            'email.unique' => 'Email ini sudah terdaftar.'
         ]);
 
-        // Buat user baru di database dengan password yang di-hash
+        // Untuk user baru di database dengan password yang di-hash
         User::create([
             'nama_user' => $request->nama_user,
             'no_hp' => $request->no_hp,

@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
-    /**
-     * Tampilkan halaman wishlist
-     */
+    //Tampilkan halaman wishlist
     public function index()
     {
         if (!session('user_login')) {
@@ -25,9 +23,7 @@ class WishlistController extends Controller
         ]);
     }
 
-    /**
-     * Tambah item ke wishlist
-     */
+    //Tambah item ke wishlist
     public function store(Request $request)
     {
         if (!session('user_login')) {
@@ -54,9 +50,7 @@ class WishlistController extends Controller
         return redirect('/wishlist')->with('success', 'Produk berhasil ditambahkan ke wishlist!');
     }
 
-    /**
-     * Hapus item dari wishlist
-     */
+    // Hapus item dari wishlist 
     public function destroy($id)
     {
         if (!session('user_login')) {
