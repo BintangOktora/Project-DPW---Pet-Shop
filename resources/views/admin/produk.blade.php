@@ -16,7 +16,6 @@
             background: #f1f5f9;
         }
 
-        /* HEADER */
         .header {
             padding: 15px 30px;
             border-top: 4px solid #8b0000;
@@ -34,7 +33,7 @@
             margin-bottom: 30px;
         }
 
-        /* === FORM CENTER === */
+        /* form ketengah */
         .form-wrapper {
             display: flex;
             justify-content: center;
@@ -77,7 +76,7 @@
             cursor: pointer;
         }
 
-        /* TABLE */
+        /* style table */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -162,7 +161,7 @@
             </div>
         </div>
 
-        <!-- TABEL READ PRODUK -->
+        <!-- tabel produk -->
         <table>
             <tr>
                 <th>ID</th>
@@ -171,7 +170,7 @@
                 <th>Harga</th>
                 <th>Stok</th>
                 <th>Gambar</th>
-                <th>⚙️</th>
+                <th>Opsi</th>
             </tr>
 
             @foreach($produk as $p)

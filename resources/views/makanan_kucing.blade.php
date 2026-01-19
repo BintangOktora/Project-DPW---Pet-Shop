@@ -69,8 +69,9 @@
             font-size: 1rem;
             font-weight: 600;
             color: #333;
-            margin-bottom: 10px;         
-            display: -webkit-box; /* Membatasi judul max 2 baris */
+            margin-bottom: 10px;
+            display: -webkit-box;
+            /* Membatasi judul max 2 baris */
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
@@ -78,7 +79,8 @@
         }
 
         .card-price {
-            color: #dc3545; /* label merah untuk harga */
+            color: #dc3545;
+            /* label merah untuk harga */
             font-weight: bold;
             font-size: 1.1rem;
             margin-bottom: 15px;
@@ -149,7 +151,6 @@
                         <a href="/login" class="btn btn-sm btn-light me-2">Login</a>
                         <a href="/register" class="btn btn-sm btn-outline-light">Register</a>
                     @endif
-                    <a href="#" class="text-white ms-3 fs-5"><i class="bi bi-search"></i></a>
                     <a href="/wishlist" class="text-white ms-3 fs-5"><i class="bi bi-heart"></i></a>
                     <a href="/keranjang" class="text-white ms-3 fs-5"><i class="bi bi-bag"></i></a>
                 </div>
@@ -158,6 +159,7 @@
         </div>
     </nav>
 
+    <!-- header / navbar -->
     <div class="category-header">
         <div class="container">
             <nav aria-label="breadcrumb">

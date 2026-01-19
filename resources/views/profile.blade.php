@@ -207,7 +207,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <form action="/profile/delete" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Ya, Hapus Akun Saya</button>
+                        <button type="submit" class="btn btn-danger">Ya, hapus akun saya</button>
                     </form>
                 </div>
             </div>

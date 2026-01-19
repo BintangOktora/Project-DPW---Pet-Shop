@@ -155,7 +155,6 @@
                         <a href="/login" class="btn btn-sm btn-light me-2">Login</a>
                         <a href="/register" class="btn btn-sm btn-outline-light">Register</a>
                     @endif
-                    <a href="#" class="text-white ms-3 fs-5"><i class="bi bi-search"></i></a>
                     <a href="/wishlist" class="text-white ms-3 fs-5"><i class="bi bi-heart"></i></a>
                     <a href="/keranjang" class="text-white ms-3 fs-5"><i class="bi bi-bag"></i></a>
                 </div>
@@ -164,7 +163,7 @@
         </div>
     </nav>
 
-    <!-- HEADER -->
+    <!-- header / navbar -->
     <div class="category-header">
         <div class="container">
             <nav aria-label="breadcrumb">
