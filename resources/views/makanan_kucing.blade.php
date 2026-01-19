@@ -11,12 +11,14 @@
     <style>
         /* --- Tema Global --- */
         body {
-            background-color: #f5f6f7; /* Abu-abu sangat terang */
+            background-color: #f5f6f7;
+            /* Abu-abu sangat terang */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .custom-navbar {
-            background-color: #e4710cff; /* Oranye Petshop */
+            background-color: #e4710cff;
+            /* Oranye Petshop */
         }
 
         /* --- Header Kategori --- */
@@ -24,13 +26,14 @@
             background: white;
             padding: 20px 0;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .breadcrumb a {
             text-decoration: none;
             color: #6c757d;
         }
+
         .breadcrumb a:hover {
             color: #e4710cff;
         }
@@ -47,12 +50,12 @@
 
         .card-product:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .card-img-top {
             height: 200px;
-            object-fit: contain; /* Agar gambar tidak terpotong */
+            object-fit: contain;
             padding: 20px;
             background-color: #fff;
         }
@@ -66,17 +69,16 @@
             font-size: 1rem;
             font-weight: 600;
             color: #333;
-            margin-bottom: 10px;
-            /* Membatasi judul max 2 baris */
-            display: -webkit-box;
+            margin-bottom: 10px;         
+            display: -webkit-box; /* Membatasi judul max 2 baris */
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            height: 48px; 
+            height: 48px;
         }
 
         .card-price {
-            color: #dc3545; /* Merah untuk harga */
+            color: #dc3545; /* label merah untuk harga */
             font-weight: bold;
             font-size: 1.1rem;
             margin-bottom: 15px;
@@ -166,18 +168,9 @@
             </nav>
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="fw-bold m-0" style="color: #333;">Katalog Makanan Kucing</h2>
-                
-                <div class="d-flex align-items-center">
-                    <span class="me-2 text-muted d-none d-md-block">Urutkan:</span>
-                    <select class="form-select form-select-sm" style="width: 150px; border-color: #e4710cff;">
-                        <option selected>Terpopuler</option>
-                        <option value="1">Harga Terendah</option>
-                        <option value="2">Harga Tertinggi</option>
-                        <option value="3">Terbaru</option>
-                    </select>
-                </div>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="container mt-4">
@@ -196,56 +189,59 @@
         @endif
     </div>
 
+    <!-- card produk-produk list makanan kucing -->
     <div class="container mb-5">
         <div class="row">
             @foreach($produk as $item)
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
-                <div class="card card-product shadow-sm">
-                    @if($item->stok < 5)
-                        <span class="badge-discount">STOK TERBATAS</span>
-                    @endif
-                    <img src="{{ $item->gambar ?: '/images/whiskas.png' }}" class="card-img-top" alt="{{ $item->nama_produk }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $item->nama_produk }}</h5>
-                        <p class="card-price">Rp {{ number_format($item->harga_produk, 0, ',', '.') }}</p>
-                        
-                        <div class="d-grid gap-2">
-                            <a href="/detail/{{ $item->id_produk }}" class="btn btn-detail">Detail</a>
-                            
-                            <div class="d-flex gap-1">
-                                <form action="/keranjang/add" method="POST" class="flex-grow-1">
-                                    @csrf
-                                    <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
-                                    <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
-                                    <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
-                                    <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
-                                    <input type="hidden" name="jumlah" value="1">
-                                    <button type="submit" class="btn btn-sm btn-outline-primary w-100">
-                                        <i class="bi bi-cart-plus"></i>
-                                    </button>
-                                </form>
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card card-product shadow-sm">
+                        @if($item->stok < 5)
+                            <span class="badge-discount">STOK TERBATAS</span>
+                        @endif
+                        <img src="{{ $item->gambar ?: '/images/whiskas.png' }}" class="card-img-top"
+                            alt="{{ $item->nama_produk }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->nama_produk }}</h5>
+                            <p class="card-price">Rp {{ number_format($item->harga_produk, 0, ',', '.') }}</p>
 
-                                <form action="/wishlist/add" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
-                                    <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
-                                    <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
-                                    <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </form>
+                            <div class="d-grid gap-2">
+                                <a href="/detail/{{ $item->id_produk }}" class="btn btn-detail">Detail</a>
+
+                                <div class="d-flex gap-1">
+                                    <form action="/keranjang/add" method="POST" class="flex-grow-1">
+                                        @csrf
+                                        <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                        <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                        <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                        <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                        <input type="hidden" name="jumlah" value="1">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary w-100">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </button>
+                                    </form>
+
+                                    <form action="/wishlist/add" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                        <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                        <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                        <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-heart"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
 
-    <div class="d-flex justify-content-center mt-4">
-        {{ $produk->links() }}
-    </div>
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $produk->links() }}
+        </div>
     </div>
 
     <footer class="text-center py-4 bg-light mt-5">
@@ -254,4 +250,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

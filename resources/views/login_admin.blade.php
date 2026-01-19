@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Login Admin - Pet Shop</title>
@@ -9,21 +10,6 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f5f5;
-        }
-
-        /* HEADER */
-        .navbar {
-            background: #e67e22;
-            padding: 15px 40px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar h1 {
-            margin: 0;
-            font-size: 20px;
         }
 
         .menu a {
@@ -51,7 +37,7 @@
             width: 360px;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -117,23 +103,12 @@
         }
     </style>
 </head>
+
 <body>
-
-    <!-- HEADER -->
-    <div class="navbar">
-        <h1>PET SHOP</h1>
-
-        <div class="menu">
-            <a href="/">HOME</a>
-            <a href="/makanan-kucing">MAKANAN KUCING</a>
-            <a href="/makanan-anjing">MAKANAN ANJING</a>
-        </div>
-    </div>
-
-    <!-- LOGIN FORM -->
+    <!-- FORM login admin -->
     <div class="container">
         <div class="login-box">
-            <h2>Login Admin</h2>
+            <h2>Admin</h2>
 
             @if(session('error'))
                 <div class="error">
@@ -160,4 +135,5 @@
     </div>
 
 </body>
+
 </html>

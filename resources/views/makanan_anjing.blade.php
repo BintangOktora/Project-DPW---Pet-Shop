@@ -144,20 +144,21 @@
                     </li>
                 </ul>
 
-            <div class="d-flex align-items-center text-white">
-                @if(session('user_login'))
-                    <span class="me-3 small text-white">
-                        Halo, {{ session('user_nama') }}
-                    </span>
-                    <a href="/profile" class="btn btn-sm btn-outline-light me-2">Profile</a>
-                    <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
-                @else
-                    <a href="/login" class="btn btn-sm btn-light me-2">Login</a>
-                    <a href="/register" class="btn btn-sm btn-outline-light">Register</a>
-                @endif
-                <a href="#" class="text-white ms-3 fs-5"><i class="bi bi-search"></i></a>
-                <a href="/keranjang" class="text-white ms-3 fs-5"><i class="bi bi-bag"></i></a>
-            </div>
+                <div class="d-flex align-items-center text-white">
+                    @if(session('user_login'))
+                        <span class="me-3 small text-white">
+                            Halo, {{ session('user_nama') }}
+                        </span>
+                        <a href="/profile" class="btn btn-sm btn-outline-light me-2">Profile</a>
+                        <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
+                    @else
+                        <a href="/login" class="btn btn-sm btn-light me-2">Login</a>
+                        <a href="/register" class="btn btn-sm btn-outline-light">Register</a>
+                    @endif
+                    <a href="#" class="text-white ms-3 fs-5"><i class="bi bi-search"></i></a>
+                    <a href="/wishlist" class="text-white ms-3 fs-5"><i class="bi bi-heart"></i></a>
+                    <a href="/keranjang" class="text-white ms-3 fs-5"><i class="bi bi-bag"></i></a>
+                </div>
 
             </div>
         </div>
@@ -173,50 +174,88 @@
                 </ol>
             </nav>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <h2 class="fw-bold m-0">Katalog Makanan Anjing</h2>
-
-            <select class="form-select form-select-sm" style="width:150px; border-color:#e4710cff;">
-                <option selected>Terpopuler</option>
-                <option>Harga Terendah</option>
-                <option>Harga Tertinggi</option>
-                <option>Terbaru</option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<!-- PRODUK -->
-<div class="container mb-5">
-    <div class="row">
-        @foreach($produk as $item)
-        <div class="col-6 col-md-4 col-lg-3 mb-4">
-            <div class="card card-product shadow-sm position-relative">
-                @if($item->stok < 5)
-                    <span class="badge-discount">STOK TERBATAS</span>
-                @endif
-                <img src="{{ $item->gambar ?: '/images/Pedigree.png' }}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $item->nama_produk }}</h5>
-                    <p class="card-price">
-                        Rp {{ number_format($item->harga_produk, 0, ',', '.') }}
-                    </p>
-                    <a href="/detail/{{ $item->id_produk }}" class="btn btn-detail">Detail</a>
-                </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold m-0">Katalog Makanan Anjing</h2>
             </div>
         </div>
-        @endforeach
     </div>
 
-    <!-- PAGINATION -->
-    <div class="d-flex justify-content-center mt-4">
-        {{ $produk->links() }}
+    <div class="container mt-4">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
     </div>
-</div>
+
+    <!-- card produk-produk list makanan anjing -->
+    <div class="container mb-5">
+        <div class="row">
+            @foreach($produk as $item)
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card card-product shadow-sm position-relative">
+                        @if($item->stok < 5)
+                            <span class="badge-discount">STOK TERBATAS</span>
+                        @endif
+                        <img src="{{ $item->gambar ?: '/images/Pedigree.png' }}" class="card-img-top"
+                            alt="{{ $item->nama_produk }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->nama_produk }}</h5>
+                            <p class="card-price">
+                                Rp {{ number_format($item->harga_produk, 0, ',', '.') }}
+                            </p>
+
+                            <div class="d-grid gap-2">
+                                <a href="/detail/{{ $item->id_produk }}" class="btn btn-detail">Detail</a>
+
+                                <div class="d-flex gap-1">
+                                    <form action="/keranjang/add" method="POST" class="flex-grow-1">
+                                        @csrf
+                                        <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                        <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                        <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                        <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                        <input type="hidden" name="jumlah" value="1">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary w-100">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </button>
+                                    </form>
+
+                                    <form action="/wishlist/add" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id_produk" value="{{ $item->id_produk }}">
+                                        <input type="hidden" name="nama_produk" value="{{ $item->nama_produk }}">
+                                        <input type="hidden" name="gambar_produk" value="{{ $item->gambar }}">
+                                        <input type="hidden" name="harga" value="{{ $item->harga_produk }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-heart"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $produk->links() }}
+        </div>
+    </div>
 
     <footer class="text-center py-4 bg-light mt-5">
         <p class="text-muted small m-0">
-            &copy; 2026 Pet Shop Indonesia. All Rights Reserved.
+            &copy; {{ date('Y') }} Pet Shop Indonesia. All Rights Reserved.
         </p>
     </footer>
 

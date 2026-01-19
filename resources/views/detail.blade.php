@@ -121,7 +121,7 @@
             align-items: center;
             font-weight: bold;
             animation: fadeIn 0.5s ease-in-out;
-            /* Animasi review muncul */
+            /* Animasi review */
         }
 
         .review-user {
@@ -187,8 +187,6 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-2">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Makanan Kucing</li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-between align-items-center">
@@ -246,9 +244,7 @@
                                 <form id="formReview">
                                     <div class="mb-3">
                                         <label class="form-label small text-muted">Komentar Anda</label>
-                                        <textarea class="form-control" id="inputKomentar" rows="3"
-                                            placeholder="Contoh: Barangnya bagus, kucing saya suka!"
-                                            required></textarea>
+                                        <textarea class="form-control" id="inputKomentar" rows="3" required></textarea>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <button type="submit" class="btn btn-submit-review px-4">Kirim Review</button>
@@ -267,10 +263,25 @@
 
                                 <div class="review-card">
                                     <div class="d-flex align-items-center">
-                                        <div class="review-user">Siti Aminah</div>
-                                        <span class="review-date"> - 5 hari lalu</span>
+                                        <div class="review-user">Josh</div>
+                                        <span class="review-date"> - 10 hari lalu</span>
                                     </div>
-                                    <div class="review-comment">kucing saya suka!</div>
+                                    <div class="review-comment">Mantap! pengiriman sesuai app!!👍</div>
+                                </div>
+                                <div class="review-card">
+                                    <div class="d-flex align-items-center">
+                                        <div class="review-user">Emily </div>
+                                        <span class="review-date"> - 1 bulan lalu</span>
+                                    </div>
+                                    <div class="review-comment">Anabul saya suka banget sama produk nya😁😍❤️!</div>
+                                </div>
+                                <div class="review-card">
+                                    <div class="d-flex align-items-center">
+                                        <div class="review-user">Tamia</div>
+                                        <span class="review-date"> - 1 bulan lalu</span>
+                                    </div>
+                                    <div class="review-comment">Toko nya terpercaya dan seller mudah dihubungi,
+                                        saya pasti beli lagi disini❤️❤️👍👍!</div>
                                 </div>
                             </div>
 
@@ -286,7 +297,7 @@
                         e.preventDefault();
 
                         const komentar = document.getElementById('inputKomentar').value;
-                        const namaUser = "Anda (User)";
+                        const namaUser = "Anda ";
                         const waktu = "Baru saja";
 
                         const newReviewCard = document.createElement('div');
