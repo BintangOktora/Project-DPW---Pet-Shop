@@ -132,7 +132,8 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">{{ $item->nama_produk }}</h5>
                             <p class="card-text text-danger fw-bold">Rp
-                                {{ number_format($item->harga_produk, 0, ',', '.') }}</p>
+                                {{ number_format($item->harga_produk, 0, ',', '.') }}
+                            </p>
 
                             <div class="d-grid gap-2">
                                 <a href="/detail/{{ $item->id_produk }}" class="btn btn-primary w-100">Detail</a>
