@@ -76,31 +76,8 @@ Route::get('/makanan-kucing', [App\Http\Controllers\ProdukController::class, 'ka
 Route::get('/makanan-anjing', [App\Http\Controllers\ProdukController::class, 'kategori'])->defaults('nama_kategori', 'makanan-anjing');
 
 
-
 Route::delete('/admin/produk/{id}', [AdminProdukController::class, 'destroy']);
 Route::get('/admin/produk/{id}/edit', [AdminProdukController::class, 'edit']);
 Route::post('/admin/produk/{id}/update', [AdminProdukController::class, 'update']);
 
-
-// Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// // USER
-// Route::get('/register', [UserController::class, 'create']);
-// Route::post('/register', [UserController::class, 'store']);
-
-// // ADMIN LOGIN
-// Route::get('/admin/login', [AdminController::class, 'loginForm']);
-// Route::post('/admin/login', [AdminController::class, 'loginProcess']);
-// Route::get('/admin/logout', [AdminController::class, 'logout']);
-
-// // ADMIN PRODUK
-// Route::get('/admin/produk', [AdminController::class, 'produk']);
-// Route::post('/admin/produk/store', [AdminProdukController::class, 'store'])
-//     ->name('admin.produk.store');
-
-// Route::get('/login', function () {
-//     return view('login_user');
-// });
-
-// Route::post('/login', [LoginController::class, 'process']);
 

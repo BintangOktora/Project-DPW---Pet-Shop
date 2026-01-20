@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 18, 2026 at 03:41 PM
+-- Generation Time: Jan 19, 2026 at 04:05 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.26
 
@@ -89,10 +89,8 @@ CREATE TABLE `checkout` (
 --
 
 INSERT INTO `checkout` (`id_transaksi`, `id_user`, `nama_produk`, `jumlah`, `harga`, `total`, `tgl_transaksi`, `created_at`, `updated_at`) VALUES
-(1, 8, 'Whiskas Ocean Fish Canned 400gr', 2, 26500, 53000, '2026-01-16', '2026-01-16 07:58:56', '2026-01-16 07:58:56'),
-(2, 9, '50pcs Cemilan Kucing Kitten Snack Kucing', 1, 30000, 30000, '2026-01-18', '2026-01-18 07:44:00', '2026-01-18 07:44:00'),
-(3, 9, 'Whiskas Ocean Fish Canned 500gr', 1, 26500, 26500, '2026-01-18', '2026-01-18 07:44:00', '2026-01-18 07:44:00'),
-(4, 9, 'Royal Canin Kitten 2KG Dry Food', 1, 210000, 210000, '2026-01-18', '2026-01-18 07:44:00', '2026-01-18 07:44:00');
+(13, 14, 'Me-O Creamy Treats Salmon 1 Pack', 1, 18000, 18000, '2026-01-19', '2026-01-19 08:56:20', '2026-01-19 08:56:20'),
+(14, 15, 'Royal Canin Kitten 2KG Dry Food', 1, 210000, 210000, '2026-01-19', '2026-01-19 09:04:57', '2026-01-19 09:04:57');
 
 -- --------------------------------------------------------
 
@@ -228,15 +226,14 @@ CREATE TABLE `produk` (
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `gambar`, `kategori`, `harga_produk`, `stok`, `created_at`, `updated_at`) VALUES
 (1, 'Whiskas Ocean Fish Canned 500gr', '/images/whiskas.png', 'Kucing', 26500, 12, '2026-01-16 07:56:43', '2026-01-18 07:44:00'),
-(2, 'Royal Canin Kitten 2KG Dry Food', '/images/RoyalCanin.png', 'Kucing', 210000, 9, '2026-01-16 07:56:43', '2026-01-18 07:44:00'),
-(3, 'Me-O Creamy Treats Salmon 1 Pack', '/images/Me-o.png', 'Kucing', 18000, 20, '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
+(2, 'Royal Canin Kitten 2KG Dry Food', '/images/RoyalCanin.png', 'Kucing', 210000, 4, '2026-01-16 07:56:43', '2026-01-19 09:04:57'),
+(3, 'Me-O Creamy Treats Salmon 1 Pack', '/images/Me-o.png', 'Kucing', 18000, 19, '2026-01-16 07:56:43', '2026-01-19 08:56:20'),
 (4, 'Friskies Seafood Sensations 1.2KG', '/images/Friskies.png', 'Kucing', 65000, 12, '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
 (5, 'Bolt Tuna Cat Food 1KG (Donut)', '/images/bolt.png', 'Kucing', 22000, 25, '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(6, 'Pedigree Adult Beef 1.5KG', '/images/Pedigree.png', 'Anjing', 68000, 10, '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
+(6, 'Pedigree Adult Beef 1.5KG', '/images/Pedigree.png', 'Anjing', 68000, 9, '2026-01-16 07:56:43', '2026-01-19 07:57:31'),
 (7, 'Royal Canin Maxi Adult 4KG', '/images/RoyalMaxi.png', 'Anjing', 420000, 5, '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(8, 'Bolt Dog Food Lamb 1KG', '/images/BoltDog.png', 'Anjing', 22000, 15, '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(9, 'Purina Pro Plan Puppy 2.5KG', '/images/Purina.png', 'Anjing', 185000, 8, '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(10, '50pcs Cemilan Kucing Kitten Snack Kucing', '/images/50pcs Cemilan Kucing Kitten Snack Kucing.jpeg', 'Kucing', 30000, 9, '2026-01-18 07:40:50', '2026-01-18 07:44:00');
+(8, 'Bolt Dog Food Lamb 1KG', '/images/BoltDog.png', 'Anjing', 22000, 13, '2026-01-16 07:56:43', '2026-01-19 07:57:31'),
+(9, 'Purina Pro Plan Puppy 2.5KG', '/images/Purina.png', 'Anjing', 185000, 7, '2026-01-16 07:56:43', '2026-01-19 05:07:33');
 
 -- --------------------------------------------------------
 
@@ -258,9 +255,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2gLlwkwtUDLhnz8oOfUF3QKoE9YwT2RA71cvy6pF', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZk5sdkJhZUxDaXBGM2NHNHQzUWJoMTlIMW9HNjl3MUt6WHk0VUR1NiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly9wcm9qZWN0LWRwdy1wZXQtc2hvcC50ZXN0IjtzOjU6InJvdXRlIjtzOjQ6ImhvbWUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjExOiJhZG1pbl9sb2dpbiI7YjoxO3M6MTQ6ImFkbWluX3VzZXJuYW1lIjtzOjU6ImFkbWluIjt9', 1768750821),
-('2GqMbKhtNWiGppy7ON0Qvzrtj9DyfLTNO22rpsef', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Herd/1.24.0 Chrome/120.0.6099.291 Electron/28.2.5 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRUFkbUE1MFRhZ3BnbGtldHNPdHczUXdLQnQ1TFpLM0F4SDJBY2NSWSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly9wcm9qZWN0LWRwdy1wZXQtc2hvcC50ZXN0Lz9oZXJkPXByZXZpZXciO3M6NToicm91dGUiO3M6NDoiaG9tZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1768750817),
-('sVp1qnXE5fnLejUTwtWxhuuAYsOZRX5LRuEY6OD5', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Herd/1.24.0 Chrome/120.0.6099.291 Electron/28.2.5 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVlhtaWE3Q3g0OUZ4YlJRcHJLeU1XTFp2V0o4ZVR2QVNIVVJqcTBHTSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly9wcm9qZWN0LWRwdy1wZXQtc2hvcC50ZXN0Lz9oZXJkPXByZXZpZXciO3M6NToicm91dGUiO3M6NDoiaG9tZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1768746124);
+('qO7FWf84QsZA1LzITts4nbg8I1X6rCRfO5jI62Rp', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im5ldyI7YTowOnt9czozOiJvbGQiO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiaVM2cWoxR0RwWEJQMUlTd3BlTW1LZ01YMGdKNXl1bUh4dzU2MUlnNiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly9wcm9qZWN0LWRwdy1wZXQtc2hvcC50ZXN0IjtzOjU6InJvdXRlIjtzOjQ6ImhvbWUiO31zOjExOiJhZG1pbl9sb2dpbiI7YjoxO3M6MTQ6ImFkbWluX3VzZXJuYW1lIjtzOjU6ImFkbWluIjt9', 1768838712);
 
 -- --------------------------------------------------------
 
@@ -284,14 +279,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_user`, `no_hp`, `email`, `password`, `created_at`, `updated_at`) VALUES
 (1, 'Oktora', '08138423777', 'bintangoktora40@gmail.com', '$2y$12$WBPuhOoa6Tr8rXUlb71BuuLD8rUW1bOx9cJm8tFK7Vaj0IQUSCVOi', '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(2, 'YARSI66', '0214206674', 'yarsi@gmail.com', '$2y$12$uu.ivpNq0Sp11LYJt6BRiuasx0OurbIE70fDZpPMGRE7E.d5qRAb2', '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(3, 'YARSI2', '666666666666', 'yarsitv@gmail.com', '$2y$12$r6NdzicUQWoOiV56qBVSIOruRUsBMIlBGwIqAAVxb3rH84If8zNP.', '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(4, 'Erere', '081892121', 'erere@gmail.com', '$2y$12$nlbZF.s1AlnAqDWv6/0HD.j8Df2/ZSuoHHiVz8MRrvUM3oKYAMO8e', '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(5, 'aku', '6536', 'aku1@gmail.com', '$2y$12$ngWp5gXmP2QTpp9r2gM7Q.zdUIcmQswnShZZVHPZ9B4pO8vNJpLQa', '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(6, 'arta1', '0333333333', 'arta1@gmail.com', '$2y$12$UAX5sbv2Z4j//xOeRgamiuCUVrOqq.svCUiqa9ugjuCpYjM9uYZwW', '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(7, 'bintang', '081389432602', 'trenzzzz1890@gmail.com', '$2y$12$uwQjSMTOPuoX.Y340hZ4T.SNsmpJGNaxCfX3Ma6lkNesY2ClQ4X8a', '2026-01-16 07:56:43', '2026-01-16 07:56:43'),
-(8, 'bintang2', '181389432602', 'trenz189000@gmail.com', '$2y$12$vQGA4AHZB0NhBApLaFSfCu4fXq01DuZ5hrbDmyb4CtZs/bm.4nrTS', '2026-01-16 07:58:07', '2026-01-16 07:58:07'),
-(9, 'bintang3', '126814023389', 'ubislop@gmail.com', '$2y$12$9X9He7kAzaGJDr42ir0mvuMeFLRmY2zT1DIypC9FnZmEIKHcTWrh.', '2026-01-18 07:43:22', '2026-01-18 07:50:19');
+(14, 'fadhil_YARSI', '0214206674', 'ubislop@gmail.com', '$2y$12$DR608S5xuovxKunhxAwL3e..v8v1Hnbv7TgMwUI/MZYMv.RVH5wkO', '2026-01-19 08:25:33', '2026-01-19 09:03:23'),
+(15, 'fadhil_YARSITV', '126814023389', 'yarsitv@gmail.com', '$2y$12$IpUEz.6xzyrJxH2miGoE0utSv4LQ/vhn4GpXziV5PYpNV6ANtglW2', '2026-01-19 09:04:20', '2026-01-19 09:04:20');
 
 -- --------------------------------------------------------
 
@@ -446,7 +435,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id_transaksi` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaksi` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -464,7 +453,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_keranjang` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -476,13 +465,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_produk` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_user` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -494,7 +483,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `id_wishlist` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_wishlist` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
