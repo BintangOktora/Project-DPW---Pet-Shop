@@ -22,7 +22,7 @@ class ProdukController extends Controller
 
     // simpan produk
     public function store(Request $request)
-    {
+    { 
         $request->validate([
             'nama_produk' => 'required',
             'harga' => 'required|numeric',

@@ -156,6 +156,17 @@
             text-align: center;
             font-size: 14px;
         }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #c3e6cb;
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -167,6 +178,13 @@
             <i class="bi bi-x-lg"></i>
         </a>
         <h2>Login Member</h2>
+
+        {{-- SUCCESS ALERT --}}
+        @if(session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         {{-- ERROR ALERT --}}
         @if(session('error'))

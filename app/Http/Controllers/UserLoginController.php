@@ -32,7 +32,8 @@ class UserLoginController extends Controller
                 'user_nama' => $user->nama_user
             ]);
 
-            return redirect('/');
+
+            return redirect('/')->with('success', 'login berhasil');
         }
 
         return back()->with('error', 'Username atau Password salah');

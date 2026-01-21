@@ -79,5 +79,3 @@ Route::get('/makanan-anjing', [App\Http\Controllers\ProdukController::class, 'ka
 Route::delete('/admin/produk/{id}', [AdminProdukController::class, 'destroy']);
 Route::get('/admin/produk/{id}/edit', [AdminProdukController::class, 'edit']);
 Route::post('/admin/produk/{id}/update', [AdminProdukController::class, 'update']);
-
-
