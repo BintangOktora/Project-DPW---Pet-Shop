@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
+
 
 class UserLoginController extends Controller
 {
@@ -14,6 +16,8 @@ class UserLoginController extends Controller
     {
         return view('login');
     }
+
+
 
     // buat proses login
     public function loginProcess(Request $request)
@@ -34,6 +38,20 @@ class UserLoginController extends Controller
 
 
             return redirect('/')->with('success', 'login berhasil');
+        }
+
+        //proses login admin
+        $admin = Admin::where('username', $request->username)
+            ->where('password', $request->password)
+            ->first();
+
+        if ($admin) {
+            session([
+                'admin_login' => true,
+                'admin_username' => $admin->username
+            ]);
+
+            return redirect('/admin/produk');
         }
 
         return back()->with('error', 'Username atau Password salah');

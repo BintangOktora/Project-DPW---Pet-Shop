@@ -207,6 +207,8 @@
                         <div class="col-md-6 pt-3 ps-md-5">
                             <h1 class="product-title">{{ $produk->nama_produk }}</h1>
                             <div class="product-price">Rp {{ number_format($produk->harga_produk, 0, ',', '.') }}</div>
+                            <h6>stok:</h6>
+                            <h1 class="product-title">{{ $produk->stok }}</h1>
 
                             <!-- Form untuk menambahkan ke keranjang -->
                             <div class="d-flex gap-2">

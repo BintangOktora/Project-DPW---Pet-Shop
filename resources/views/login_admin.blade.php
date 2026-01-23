@@ -120,10 +120,10 @@
                 @csrf
 
                 <label>Username</label>
-                <input type="text" name="username" placeholder="Masukkan username admin" required>
+                <input type="text" name="username" required>
 
                 <label>Password</label>
-                <input type="password" name="password" placeholder="Masukkan password" required>
+                <input type="password" name="password" required>
 
                 <button type="submit">Masuk</button>
             </form>
